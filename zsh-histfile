@@ -13,3 +13,24 @@ reload
 exit
 htop
 exit
+git status
+git init
+git status
+git add .
+git status
+git commit -m "Initial commit of dotfiles"
+git status
+git remote add origin git@github.com:splashme/dotfiles.git
+git push origin master
+git push origin master
+cat ~/.ssh/id_dsa.pub
+cat ~/.ssh/id_dsa
+git push origin master
+git pull
+git status
+git pull
+git pull origin master
+ls
+git push origin master
+cd
+exit
