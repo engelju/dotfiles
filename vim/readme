@@ -1,0 +1,31 @@
+## put everything in one place
+mv ~/.vimrc ~/.vim/vimrc
+ln -s ~/.vim/vimrc ~/.vimrc
+
+## setting up your vim dir with git
+cd ~/.vim
+git init
+# create readme file
+git add .
+git init
+
+## keep your plugins as submodules
+cd ~/.vim
+(mkdir ~/.vim/bundle)
+git submodule add http://github.com/tpope/vim-fugitive.git bundle/fugitive
+git add .
+git commit -m "Install fugutive bundle as submodule"
+
+## upgrading a plugin bundle
+cd ~/.vim/bundle/fugitive
+git pull origin master
+
+## upgrading all bundled plugins
+git submodule foreach git pull origin master
+
+## installing your vim environment on another machine
+cd ~
+git clone http://github.com/username/dotvim.git ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+cd ~/.vim
+git submodule update --init

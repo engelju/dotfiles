@@ -1,0 +1,86 @@
+# #######################################################
+#   Find the width of the prompt:
+# #
+
+function prompt_command() {
+
+TERMWIDTH=${COLUMNS}
+
+#   Add all the accessories below ...
+local temp="┌──[${usernam}@${hostnam}:${cur_tty}]──[${PWD}]──"
+
+let fillsize=${TERMWIDTH}-${#temp}
+if [ "$fillsize" -gt "0" ]
+then
+	fill="───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
+	#   It's theoretically possible someone could need more 
+	#   dashes than above, but very unlikely!  HOWTO users, 
+	#   the above should be ONE LINE, it may not cut and
+	#   paste properly
+	fill="${fill:0:${fillsize}}"
+	newPWD="${PWD}"
+fi
+
+if [ "$fillsize" -lt "0" ]
+then
+	fill=""
+	let cut=3-${fillsize}
+	newPWD="...${PWD:${cut}}"
+fi
+}
+
+PROMPT_COMMAND=prompt_command
+
+# #######################################################
+# FILL W/CLEARCASE VIEW
+# #
+
+wv=$(cleartool pwv |grep "Set view:")
+
+if [[ $wv == *NONE* ]]
+then
+    clearcaseview="no view set";
+else
+    tmp=${wv#*:}
+    clearcaseview=${tmp#*: }
+fi
+
+### ACTUALLY *MAKE* THE PROMPT
+
+hostnam=$(hostname)
+usernam=$(whoami)
+temp="$(tty)"
+#   Chop off the first five chars of tty (ie /dev/):
+cur_tty="${temp:5}"
+unset temp
+
+LIGHT_GRAY="\[\033[0;37m\]"
+NO_COLOUR="\[\033[0m\]"
+
+case $TERM in
+    xterm*|rxvt*)
+        TITLEBAR='\[\033]0;\u@\h:\w\007\]'
+        ;;
+    *)
+        TITLEBAR=""
+        ;;
+esac
+
+# -- change prompt
+if [ ! -n "$SSH_TTY" ]; then
+  #local login
+  PS1="$TITLEBAR\
+$LIGHT_GRAY┌──[\
+$NO_COLOUR\$usernam$LIGHT_GRAY@$NO_COLOUR\$hostnam$NO_COLOUR:${cur_tty}\
+${LIGHT_GRAY}]─\${fill}─[\
+$NO_COLOUR\${newPWD}\
+$LIGHT_GRAY]──\
+\n$LIGHT_GRAY└─>[$NO_COLOUR$clearcaseview$LIGHT_GRAY]──$NO_COLOUR\\$ " 
+
+  PS2="$NO_COLOUR-$LIGHT_GRAY-$LIGHT_GRAY-$NO_COLOUR "
+  export PS1
+else
+  #ssh login
+  #export PS1="[\[\033[0;31m\]\t\[\033[0m\]]\[\033[0;37m\]-\[\033[0m\][\u@\h: \[\033[0;37m\]\W\[\033[0m\]\\$> "
+  export PS1="\u@\h:\W "
+fi

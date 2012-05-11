@@ -1,0 +1,9 @@
+[gui]
+	recentrepo = /home/engelju/tmp/git-test
+[user]
+	name = Julie Engel
+	email = julie.engel@mail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto

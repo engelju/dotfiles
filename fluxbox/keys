@@ -1,0 +1,37 @@
+Control Mod4 Delete       :Reconfigure
+Control Mod4 Shift Delete :Restart
+
+Control 36          :ExecCommand xterm +sb
+Control 108         :ExecCommand xterm +sb
+#Control 64          :ExecCommand xterm +sb
+#Control 64          :ExecCommand xterm +sb
+
+Mod1    F2          :ExecCommand fbrun
+Control 65          :ShadeWindow
+
+OnDesktop Mouse1    :HideMenus
+OnDesktop Mouse2    :WorkspaceMenu
+OnDesktop Mouse3    :RootMenu
+
+Control Tab 	    :NextTab
+Control Shift Tab   :PrevTab
+
+Mod1 Tab            :NextWindow
+Mod1 Shift Tab      :PrevWindow
+
+OnDesktop Mouse4    :NextWorkspace
+OnDesktop Mouse5    :PrevWorkspace
+
+Control Mod1 Left   :PrevWorkspace
+Control Mod1 Right  :NextWorkspace
+
+Mod4 Shift Up       :ResizeVertical -2
+Mod4 Shift Down     :ResizeVertical +2
+Mod4 Shift Left     :ResizeHorizontal -2
+Mod4 Shift Right    :ResizeHorizontal +2
+
+Control Alt d       :ToggleCmd {ShowDesktop} {DeIconify all originquiet}
+Mod4 l              :ExecCommand "xlock -mode matrix"
+Mod4 n 		    :ExecCommand nautilus --no-desktop --browser
+
+! vim:ft=fluxkeys

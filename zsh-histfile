@@ -1,0 +1,15 @@
+pwd
+ls
+cd notes
+ls
+lsb_release --help
+cat
+google hell, oh world
+google
+reload .bashr
+cd
+source .bashrc
+reload
+exit
+htop
+exit
