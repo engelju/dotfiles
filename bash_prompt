@@ -1,6 +1,17 @@
-# #######################################################
-#   Find the width of the prompt:
-# #
+#
+# Git Status
+#
+function parse_git_dirty {
+    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+
+function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+#
+# Find the width of the prompt:
+#
 
 function prompt_command() {
 
@@ -76,6 +87,7 @@ ${LIGHT_GRAY}]─\${fill}─[\
 $NO_COLOUR\${newPWD}\
 $LIGHT_GRAY]──\
 \n$LIGHT_GRAY└─>[$NO_COLOUR$clearcaseview$LIGHT_GRAY]──$NO_COLOUR\\$ " 
+#\n$LIGHT_GRAY└─>[$NO_COLOUR$(parse_git_branch)$LIGHT_GRAY]──$NO_COLOUR\\$ " 
 
   PS2="$NO_COLOUR-$LIGHT_GRAY-$LIGHT_GRAY-$NO_COLOUR "
   export PS1
