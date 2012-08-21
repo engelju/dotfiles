@@ -18,14 +18,14 @@ call pathogen#helptags()
 :let g:html_tag_case = 'lowercase'   "inserts lowercase tags
 :let g:html_map_entities_leader = '\' "sets leader back to backslash
 
-" for the vimpress plugin
-let VIMPRESS=[{'username':'jengtron',
-              \'password':'masowanda',
-              \'blog_url':'http://tvandcode.wordpress.com/'
-              \}]
+" Set html creation to use style sheets
+let html_use_css = 1
+
+" in case you forgot sudo
+cnoremap w!! w !sudo dd of=%
 
 " Basics ----------------------------------------------------
-    set t_Co=256
+    set t_Co=256                " set 256 term colors
     set title                   " gives | page.html (~) - VIM
     set nocompatible            " get out of vi-compatible mode
     set confirm                 " instead of silent failing, check it
@@ -83,7 +83,8 @@ let VIMPRESS=[{'username':'jengtron',
     set shortmess=aOstT         " shortens messages to avoid 'press a key'
     set showcmd                 " show the command being typed
     set sidescrolloff=10        " Keep 5 lines at the size
-
+    set fillchars=vert:│        " that's a vertical box-drawing character
+                                " useful for split views ala :vsplit 
 " Text Formatting/Layout ------------------------------------
     set wrapmargin=15           " wrap too long sentences
     set autoindent              " file specific indent for newlines
@@ -99,7 +100,8 @@ let VIMPRESS=[{'username':'jengtron',
                                 " many spaces should a tab be
     set tabstop=8               " real tabs should be 8
 
-    command Preview :!firefox %<CR> "neat firefox preview
+    "neat firefox preview
+    command Preview :!firefox %<CR> 
 
     "highlights the background of text that is > 80 columns wide "
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -159,17 +161,32 @@ let VIMPRESS=[{'username':'jengtron',
     nnoremap <C-y> 3<C-y>
     vnoremap <C-e> 3<C-e>
     vnoremap <C-y> 3<C-y>
+    
+    "set window movement leading char to 's' so you dont get emacs fingers
+    nnoremap s <C-W>
+    autocmd filetype netrw nnoremap <buffer> s <C-W>
+
+    "clear highlighted search result after a search
+    map // :nohlsearch<CR>; echo 'Search highlight cleared' <CR>
 
     " map firefox keybindings
-    ":map <C-S-tab> :tabprevious<CR>
+    "map <c-s-tab> :tabprevious<CR>
     "map <C-tab> :tabnext<CR>
     "map <C-t> :tabnew<CR>
+    " tab navigation like firefox
+    nmap <c-s-tab> :tabprevious<cr>
+    nmap <c-tab> :tabnext<cr>
+    map <c-s-tab> :tabprevious<cr>
+    map <c-tab> :tabnext<cr>
+    imap <c-s-tab> <esc>:tabprevious<cr>i
+    imap <c-tab> <esc>:tabnext<cr>i
+    nmap <c-t> :tabnew<cr>:e<space>
+    imap <c-t> <esc>:tabnew<cr>:e<space>"
 
     " yank to EOL when with Y
     map Y y$
-
-    " Set html creation to use style sheets
-    let html_use_css = 1
+    " Yank Visual selection as a single line to system clipboard
+    vnoremap <silent> <Leader>y "+y:let @+ = join(map(split(@+, '\n'), 'substitute(v:val, "^\\s\\+", "", "")'), " ")<CR>
 
     " fix common typos"
     :map :W :w
@@ -205,6 +222,9 @@ let VIMPRESS=[{'username':'jengtron',
     vnoremap > >gv
 
 " Gui Settings ==============================================
+" some useful vim colorscheme generators:
+"   http://www.villustrator.com/
+"   http://bytefluent.com/vivify/
 if has("gui_running")
     win 83 50
     colorscheme asmdev " my color scheme (only works in GUI)
@@ -217,8 +237,9 @@ else
     set background=dark
     "colorscheme Mustang_Vim_Colorscheme_by_hcalves
     "colorscheme wombat256mod
-    colorscheme default
     "colorscheme xoria256
+    "colorscheme default
+    colorscheme jeng-256
     set nocursorline
 endif
 " ===========================================================
