@@ -17,6 +17,8 @@ if [ -f /etc/clearcase/aliases.sh ]; then
   source /etc/clearcase/aliases.sh
 fi
 
+# My bash additions #####################################
+
 if [ -f ~/.bash_bindings ]; then
   source ~/.bash_bindings
 fi
