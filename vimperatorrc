@@ -7,7 +7,8 @@ set hlsearch
 map # :noh
  
 "Zege die Lesezeichen- und Adressleiste an
-set guioptions=T
+"set guioptions=T
+set guioptions=
 
 noremap J <C-d>
 noremap K <C-u>
@@ -15,12 +16,18 @@ noremap K <C-u>
 noremap <C-S-Tab> gT
 noremap <C-h> gT
 noremap <Left> gT
-noremap h gT
 
 noremap <C-Tab> gT
 noremap <Right> gt
 noremap <C-l> gt
 noremap l gt
+
+nnoremap h gT
+nnoremap j 7j
+nnoremap k 7k
+
+"nnoremap f F
+"nnoremap F f
  
 "Aktuelles Tab mit Shift+Pfeiltasten oder
 "Strg+Shift+l bzw. Strg+Shift+h bewegen
