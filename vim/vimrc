@@ -24,8 +24,21 @@ let VIMPRESS=[{'username':'jengtron',
               \'blog_url':'http://tvandcode.wordpress.com/'
               \}]
 
+"set window movement leading char to 's' so you dont get emacs fingers
+nnoremap s <C-W>
+autocmd filetype netrw nnoremap <buffer> s <C-W>
+
+"clear highlighted search result after a search
+map // :nohlsearch<CR>; echo 'Search highlight cleared' <CR>
+
+" in case you forgot sudo
+cnoremap w!! w !sudo dd of=%
+
+set fillchars=vert:│    " that's a vertical box-drawing character
+                        " useful for split views ala :vsplit 
+
 " Basics ----------------------------------------------------
-    set t_Co=256
+    set t_Co=256                " set 256 term colors
     set title                   " gives | page.html (~) - VIM
     set nocompatible            " get out of vi-compatible mode
     set confirm                 " instead of silent failing, check it
@@ -99,7 +112,8 @@ let VIMPRESS=[{'username':'jengtron',
                                 " many spaces should a tab be
     set tabstop=8               " real tabs should be 8
 
-    command Preview :!firefox %<CR> "neat firefox preview
+    "neat firefox preview
+    command Preview :!firefox %<CR> 
 
     "highlights the background of text that is > 80 columns wide "
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -167,6 +181,8 @@ let VIMPRESS=[{'username':'jengtron',
 
     " yank to EOL when with Y
     map Y y$
+    " Yank Visual selection as a single line to system clipboard
+    vnoremap <silent> <Leader>y "+y:let @+ = join(map(split(@+, '\n'), 'substitute(v:val, "^\\s\\+", "", "")'), " ")<CR>
 
     " Set html creation to use style sheets
     let html_use_css = 1
@@ -205,6 +221,9 @@ let VIMPRESS=[{'username':'jengtron',
     vnoremap > >gv
 
 " Gui Settings ==============================================
+" some useful vim colorscheme generators:
+"   http://www.villustrator.com/
+"   http://bytefluent.com/vivify/
 if has("gui_running")
     win 83 50
     colorscheme asmdev " my color scheme (only works in GUI)
@@ -217,8 +236,10 @@ else
     set background=dark
     "colorscheme Mustang_Vim_Colorscheme_by_hcalves
     "colorscheme wombat256mod
-    colorscheme default
+    "colorscheme default
+    colorscheme 256-grayvim
     "colorscheme xoria256
     set nocursorline
+    let rdark_current_line = 1
 endif
 " ===========================================================

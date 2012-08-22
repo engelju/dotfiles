@@ -40,8 +40,8 @@ xrdb -load $HOME/.Xdefaults
 # wmnd &
 # wmsmixer -w &
 # idesk &
-conky &
-pidgin &
+#conky &
+#pidgin &
 
 # And last but not least we start fluxbox.
 # Because it is the last app you have to run it with ''exec'' before it.
