@@ -9,6 +9,7 @@ alias q="exit"
 alias c='clear'
 alias j='jobs'
 alias vi="vim"
+alias g="git"
 alias lp='leafpad'
 alias mp='mousepad'
 
@@ -34,8 +35,9 @@ alias l.='ls -dF .[a-zA-Z0-9]*' #only show dotfiles
 alias count='wc'
 alias linecount='wc -l'
 
-alias pgrep='pgrep -l'
-alias grep='grep -rIin --color'
+#alias pgrep='pgrep -l'
+#alias grep='grep -rIin --color'
+alias grep=~/bin/ack.pl
 
 #alias vi='vim -p -T xterm-256color'
 alias viconk='vim ~/.conkyrc'
