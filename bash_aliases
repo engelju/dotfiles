@@ -10,6 +10,8 @@ alias c='clear'
 alias j='jobs'
 alias vi="vim"
 alias g="git"
+alias gs="git status"
+alias gls='find /home/engelju -name ".git"'
 alias lp='leafpad'
 alias mp='mousepad'
 
