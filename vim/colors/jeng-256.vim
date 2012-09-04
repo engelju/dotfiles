@@ -33,7 +33,7 @@ hi FoldColumn	ctermfg=247         ctermbg=233       cterm=Bold
 hi LineNr	ctermfg=238         ctermbg=244        cterm=None
 hi LineNr	ctermfg=247         ctermbg=236        cterm=None
 hi StatusLine   ctermfg=247         ctermbg=233        cterm=Bold
-hi StatusLineNC ctermfg=247         ctermbg=234        cterm=None
+hi StatusLineNC ctermfg=247         ctermbg=238        cterm=None
     
 " == Messages =============================================================
 hi ErrorMsg     ctermfg=124         ctermbg=White      cterm=None
@@ -77,7 +77,7 @@ hi Constant	ctermfg=208         ctermbg=None       cterm=None
 hi Error	ctermfg=233         ctermbg=124        cterm=Bold
 ""hi Exception  ctermbg=234         ctermfg=203        cterm=none 
 "hi Function     ctermbg=234         ctermfg=117        cterm=none
-hi Function     ctermbg=234         ctermfg=117        cterm=underline
+hi Function     ctermfg=None        ctermbg=None       cterm=underline
 hi Identifier	ctermfg=111         ctermbg=None       cterm=Bold
 hi Ignore       ctermfg=220         ctermbg=None       cterm=Bold
 ""hi MatchParen ctermbg=214         ctermfg=234        cterm=none

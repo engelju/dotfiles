@@ -4,25 +4,93 @@
 " ===========================================================
 
 " Source the vimrc file after saving it (make sense, doesn't it)
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+""if has("autocmd")
+""  autocmd bufwritepost .vimrc source $MYVIMRC
+""endif
 
-" for the pathogen plugin
-call pathogen#infect()
-call pathogen#helptags()
-
-" for the rather annoying html plugin
-:let g:no_html_tab_mapping  = 'yes' "disables the annoying tab mapping
-:let g:no_html_map_override = 'yes' "disables any mapping overrides
-:let g:html_tag_case = 'lowercase'   "inserts lowercase tags
-:let g:html_map_entities_leader = '\' "sets leader back to backslash
-
-" Set html creation to use style sheets
-let html_use_css = 1
+let mapleader = ","
 
 " in case you forgot sudo
 cnoremap w!! w !sudo dd of=%
+
+" Vundle ----------------------------------------------------
+    filetype off                    " required!
+
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+
+    " let Vundle manage Vundle      " required! 
+    Bundle 'gmarik/vundle'
+
+    " -- My Bundles here:
+    "
+    " original repos on github
+    Bundle 'xolox/vim-easytags'
+    Bundle 'MarcWeber/vim-addon-mw-utils'
+    Bundle 'tomtom/tlib_vim'
+    Bundle 'honza/snipmate-snippets'
+    Bundle 'garbas/vim-snipmate'
+    Bundle 'tpope/vim-speeddating'
+    Bundle 'tpope/vim-surround'
+    Bundle 'tpope/vim-markdown'
+    Bundle 'tsaleh/vim-align'
+    Bundle 'mattn/zencoding-vim'
+    "Bundle 'majutsushi/tagbar'
+    " ^-- needs vim 7.167+ to work
+
+    " ... maybe try 
+    ""Bundle ''Townk/vim-autoclose'
+    ""Bundle 'tpope/vim-fugitive'
+    ""Bundle 'Lokaltog/vim-easymotion'
+    ""Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+    " vim-scripts repos
+    Bundle 'AutoClose'
+    Bundle 'buftabs'
+    Bundle 'c.vim'
+    Bundle 'fluxbox.vim'
+    Bundle 'fluxkeys.vim'
+    Bundle 'kwbdi.vim'
+    Bundle 'matrix.vim'
+    Bundle 'SearchComplete'
+    Bundle 'taglist.vim'
+    Bundle 'xml.vim'
+   
+    " non github repos
+    ""Bundle 'http://git.wincent.com/command-t.git'
+
+    filetype plugin indent on     " required!
+    "
+    " Brief help
+    " :BundleList          - list configured bundles
+    " :BundleInstall(!)    - install(update) bundles
+    " :BundleSearch(!) foo - search(or refresh cache first) for foo
+    " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+    "
+    " see :h vundle for more details or wiki for FAQ
+    " NOTE: comments after Bundle command are not allowed..
+    
+" Basics ----------------------------------------------------
+    " for the rather annoying html plugin
+    :let g:no_html_tab_mapping  = 'yes' "disables the annoying tab mapping
+    :let g:no_html_map_override = 'yes' "disables any mapping overrides
+    :let g:html_tag_case = 'lowercase'   "inserts lowercase tags
+    :let g:html_map_entities_leader = '\' "sets leader back to backslash
+
+    " Set html creation to use style sheets
+    :let html_use_css = 1
+
+    " Set notes direcotry
+    :let g:notes_directory = '~/docs/vimnotes'
+    :let g:notes_suffix = '.txt'
+
+    " EasyTags plugin
+    " Search for updatetime in vim-easytags/autoload and delete verbose output
+    :let g:easytags_include_members = 1
+    :let g:easytags_resolve_links = 1
+    :let g:easytags_suppress_ctags_warning = 1
+    :let g:easytags_updatetime_min=4000
+    set updatetime=4000
 
 " Basics ----------------------------------------------------
     set t_Co=256                " set 256 term colors
@@ -84,7 +152,16 @@ cnoremap w!! w !sudo dd of=%
     set showcmd                 " show the command being typed
     set sidescrolloff=10        " Keep 5 lines at the size
     set fillchars=vert:│        " that's a vertical box-drawing character
-                                " useful for split views ala :vsplit 
+                                " useful for split views ala :vsplit
+    "if has('gui_running')
+    "    set list
+    "    set listchars=tab:▶\ ,eol:★
+    "    set listchars+=trail:◥
+    "    set listchars+=extends:❯
+    "    set listchars+=precedes:❮
+    "endif
+    set listchars=tab:>.,trail:·,eol:$
+    "nmap <silent> <leader>s :set nolist!<CR>
 " Text Formatting/Layout ------------------------------------
     set wrapmargin=15           " wrap too long sentences
     set autoindent              " file specific indent for newlines
@@ -101,7 +178,7 @@ cnoremap w!! w !sudo dd of=%
     set tabstop=8               " real tabs should be 8
 
     "neat firefox preview
-    command Preview :!firefox %<CR> 
+    command Preview :!firefox %<CR>
 
     "highlights the background of text that is > 80 columns wide "
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -156,12 +233,20 @@ cnoremap w!! w !sudo dd of=%
     nnoremap j gj
     nnoremap k gk
 
+    " original f is pretty useless, map it to search
+    nnoremap f /
+    map ff :nohlsearch<CR>; echo 'Search highlight cleared' <CR>
+
+    " get outta vim by double-pressing j
+    imap jj <Esc>
+    imap jk <Esc>
+
     " faster navigation
     nnoremap <C-e> 3<C-e>
     nnoremap <C-y> 3<C-y>
     vnoremap <C-e> 3<C-e>
     vnoremap <C-y> 3<C-y>
-    
+
     "set window movement leading char to 's' so you dont get emacs fingers
     nnoremap s <C-W>
     autocmd filetype netrw nnoremap <buffer> s <C-W>
@@ -205,7 +290,7 @@ cnoremap w!! w !sudo dd of=%
     nnoremap ` '
 
     " remap coomand-line trigger
-    nore , :
+    "nore , :
 
     " Buffer management
     nmap <C-tab> :bn<CR>
