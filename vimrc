@@ -46,7 +46,7 @@ cnoremap w!! w !sudo dd of=%
     call vundle#begin()
 
     " let Vundle manage Vundle      " required! 
-    Plugin 'gmarik/vundle'
+    Plugin 'VundleVim/Vundle.vim'
 
     " -- My Plugins here:
     "
@@ -97,7 +97,7 @@ cnoremap w!! w !sudo dd of=%
     "Plugin 'gtk-vim-syntax'
     "Plugin 'matrix.vim'
     " searchComplete:   Tab completion while searching
-    Plugin 'SearchComplete'
+    "Plugin 'SearchComplete'
    
     " non github repos
     ""Plugin 'http://git.wincent.com/command-t.git'
