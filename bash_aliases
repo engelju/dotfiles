@@ -1,7 +1,19 @@
-alias reload='source ~/.bashrc'
+alias reload='source ~/.bash_profile'
+#alias reload='source ~/.bashrc'
+
 alias xterm='xterm +sb'
 alias urxvt='urxvt +sb'
 #alias rdesktop='rdesktop -k de-ch -g 1280x1024'
+
+#alias lp='leafpad'
+#alias mp='mousepad'
+
+alias mount='mount |column -t'
+alias scrot='import -window root screenshot.png'
+#alias mutt='mutt -f imap://engelju@poseidon.nexus-ag.com'
+
+alias htdocs="cd /Applications/MAMP/htdocs/"
+alias love="/Applications/love.app/Contents/MacOS/love"
 
 # general shortcuts
 alias :q="exit"
@@ -11,14 +23,18 @@ alias j='jobs'
 alias vi="vim"
 alias g="git"
 alias gs="git status"
+alias gstat="git status"
 alias gd="git diff"
 alias gls='find /home/engelju -name ".git"'
-alias lp='leafpad'
-alias mp='mousepad'
 
-alias mount='mount |column -t'
-alias scrot='import -window root screenshot.png'
-alias mutt='mutt -f imap://engelju@poseidon.nexus-ag.com'
+#alias l.='ls -dF .[a-zA-Z0-9]* --color=tty' #only show dotfiles
+alias ls="ls --color --time-style=long-iso"
+alias l.='ls -dF .[a-zA-Z0-9]*' #only show dotfiles
+alias ls="ls -aFh"
+alias ll="ls -alFh"
+
+alias count='wc'
+alias linecount='wc -l'
 
 # date shortcuts
 alias cal='cal -m3'
@@ -31,16 +47,12 @@ alias lsscr='screen -list'
 alias screen='screen -T xterm-256color -xR'
 alias screen-retach='screen -raAd'
 
-#alias l.='ls -dF .[a-zA-Z0-9]* --color=tty' #only show dotfiles
-alias ls="ls --color --time-style=long-iso"
-alias l.='ls -dF .[a-zA-Z0-9]*' #only show dotfiles
-
-alias count='wc'
-alias linecount='wc -l'
-
 #alias pgrep='pgrep -l'
+alias pgrep="pgrep -il"
 #alias grep='grep -rIin --color'
-alias grep=~/bin/ack.pl
+#alias grep=~/bin/ack.pl
+#alias grep=~/bin/ack.pl
+alias grep=ag
 
 #alias vi='vim -p -T xterm-256color'
 alias viconk='vim ~/.conkyrc'
@@ -56,13 +68,13 @@ alias dos2unix='recode dos/CR-LF..l1'
 alias unix2win='recode l1..windows-1250'
 alias unix2dos='recode l1..dos/CR-LF'
 
-# shortcut to svn
-alias repo-co="svn co http://ilum/svn/netview/engelju"
-alias svn-log='svn log -v'
-
 # shortcut to chrome
 alias chrome="$HOME/bin/chromer/chrome-wrapper"
 
 # start mocp with fitting theme
 alias mocp="mocp -T lianli"
 
+alias mysqli="mycli -u root" #pw: root
+alias httpie="http"
+
+alias tunedl="youtube-dl -x --audio-format mp3 --audio-quality 0"
