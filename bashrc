@@ -9,14 +9,6 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-if [ -f /etc/clearcase/profile.sh ]; then
-  source /etc/clearcase/profile.sh
-fi
-
-if [ -f /etc/clearcase/aliases.sh ]; then
-  source /etc/clearcase/aliases.sh
-fi
-
 # My bash additions #####################################
 
 if [ -f ~/.bash_bindings ]; then
@@ -33,15 +25,15 @@ fi
 
 # Set global variables ##################################
 
+export EDITOR=vim
+export WINEDITOR=mvim
+
 #own bin
 PATH="~/bin:$PATH"
-#arduino
-PATH="$PATH:/usr/local/avr/bin"
-export PATH
-
-export EDITOR=vim
-export WINEDITOR=gvim
-export SS7HOME=/cc/vobs/STS/TCU/ss7
+export GOPATH=$HOME/Desktop/code/golang
+export PATH=~/.composer/vendor/bin:$PATH
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 # Some history settings #################################
 
@@ -54,12 +46,6 @@ shopt -s histappend
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# Hostname as terminal header ###########################
-
-if [ -f /usr/bin/figlet ]; then
-    figlet -c $(hostname)
-fi
 
 #unset LS_COLORS
 LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
@@ -95,13 +81,6 @@ mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
 mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
 
-#cat () {
-  #/usr/local/bin/spc $1
-  #RETVAL=$?
-  #[ $RETVAL -ne 0 ] && /bin/cat $1
-  #[ $RETVAL -eq 1 ] && /usr/local/bin/spc $1
-#}
-
 extract () {
   if [ -f $1 ] ; then
       case $1 in
@@ -131,6 +110,10 @@ prefix () {
 
 bu() {
     cp $1 `basename $1`-`date +%Y%m%d`.backup ;
+}
+
+function cless () {
+    pygmentize -f terminal "$1" | less -R
 }
 
 # #######################################################
