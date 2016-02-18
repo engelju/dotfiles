@@ -22,6 +22,7 @@ alias c='clear'
 alias j='jobs'
 alias vim="mvim -v"
 alias vi="vim"
+
 alias g="git"
 alias gs="git status"
 alias gstat="git status"
