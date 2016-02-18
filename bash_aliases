@@ -20,6 +20,7 @@ alias :q="exit"
 alias q="exit"
 alias c='clear'
 alias j='jobs'
+alias vim="mvim -v"
 alias vi="vim"
 alias g="git"
 alias gs="git status"
