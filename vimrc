@@ -61,8 +61,6 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'tpope/vim-repeat'
     " emmet-vim:        hi-speed html&css editing
     Plugin 'mattn/emmet-vim'
-    " longline.vim:     helps with long lines
-    Plugin 'Soares/longline.vim'
     " vim-bufkill:      del/close buffer without changing layout
     Plugin 'qpkorr/vim-bufkill'
     " vim-autoclose:    Intelligent autoclose plugin
@@ -113,11 +111,6 @@ cnoremap w!! w !sudo dd of=%
     " Easytags: Disable autoupdate
     "let g:easytags_auto_update = 0
     
-    " Longline: Disabled till explicitly called
-    let g:loaded_longline = 1
-    let g:longline_autohl = 0
-    let g:longline_maxlength = 80
-
     " Quicktask: default settings
     autocmd BufNewFile,BufRead *.qt setf quicktask
     let g:quicktask_snip_default_filetype = 'qt'
@@ -399,12 +392,6 @@ command! WriteOff call VimRoomUnset()
     " Command: ,soff
     nnoremap <leader>soff :set syntax=<CR>
     
-    " toggle long line marker
-    " Command: ,lt and ,ln and ,lp
-    noremap <leader>lt :LongLineToggle<CR>
-    noremap <leader>ln :LongLineNext<CR>
-    noremap <leader>lp :LongLinePrev<CR>
-
     " == END LEADER KEY MAPPINGS ============================"}}}
 
     " space / shift-space scroll in normal mode
