@@ -81,6 +81,8 @@ alias unix2dos='recode l1..dos/CR-LF'
 
 # shortcut to chrome
 alias chrome="$HOME/bin/chromer/chrome-wrapper"
+alias killchrome="pkill -9 -f 'Google Chrome\.app/.*/MacOS/Google Chrome Helper .*--type=renderer'"
+alias killchrome2='killall -9 -m "Chrome Helper"'
 
 # start mocp with fitting theme
 alias mocp="mocp -T lianli"
