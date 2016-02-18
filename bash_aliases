@@ -28,6 +28,13 @@ alias gstat="git status"
 alias ga="git add"
 alias gc='git commit'
 alias gd="git diff"
+
+#alias gl="git log"
+alias gl="git log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'"
+#alias glgraph="git log --pretty=oneline --decorate --graph"
+alias glgraph="git log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset' --all"
+alias glbranch="git log --graph --simplify-by-decoration --pretty=format:'%d' --all"
+
 alias gls='find /home/engelju -name ".git"'
 
 #alias l.='ls -dF .[a-zA-Z0-9]* --color=tty' #only show dotfiles
