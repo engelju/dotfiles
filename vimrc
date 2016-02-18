@@ -98,7 +98,7 @@ cnoremap w!! w !sudo dd of=%
     ""Plugin 'Lokaltog/vim-easymotion'
 
     " vim-scripts repos
-    Plugin 'buftabs'
+    "Plugin 'buftabs'
     "Plugin 'c.vim'
     "Plugin 'fluxbox.vim'
     "Plugin 'fluxkeys.vim'
