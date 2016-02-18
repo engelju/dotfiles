@@ -511,6 +511,9 @@ command! WriteOff call VimRoomUnset()
 
     " map CTRL+] to ctrl J (follow link in help file)
     noremap <C-m> <C-]>
+
+    " map ,ev to edit vimrc
+    nmap ,ev :e ~/.vimrc<CR>
 "}}}
 " Gui Settings =============================================="{{{
 " some useful vim colorscheme generators:
