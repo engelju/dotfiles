@@ -63,8 +63,8 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'mattn/emmet-vim'
     " longline.vim:     helps with long lines
     Plugin 'Soares/longline.vim'
-    " butane.vim:       del/close buffer without changing layout
-    Plugin 'Soares/butane.vim'
+    " vim-bufkill:      del/close buffer without changing layout
+    Plugin 'qpkorr/vim-bufkill'
     " vim-autoclose:    Intelligent autoclose plugin
     Plugin 'Townk/vim-autoclose'
 
@@ -107,8 +107,8 @@ cnoremap w!! w !sudo dd of=%
 "}}}
 " Plugin Configuratiion -------------------------------------"{{{
 
-    " Butane: remap bclose
-    nnoremap <leader>bd :Bclose<cr>
+    " Bufkill: remap bclose
+    nnoremap bd :BD<cr>
      
     " Easytags: Disable autoupdate
     "let g:easytags_auto_update = 0
@@ -427,9 +427,6 @@ command! WriteOff call VimRoomUnset()
     nnoremap cw ciw
     nnoremap dw daw
 
-    " remap bd to Bclose from the butane plugin
-    nnoremap bd :Bclose<CR>
-    
     " original f is pretty useless, map it to search
     "nnoremap f /
     "nnoremap ff :nohlsearch<CR>
