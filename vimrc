@@ -70,6 +70,10 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'xolox/vim-easytags'
     " Nerdtree:         left hand side file explorer
     Plugin 'scrooloose/nerdtree'
+    " Utilsnips:        snippet manager
+    " see http://vimcasts.org/episodes/meet-ultisnips/
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
 
     " vim-misc:
     Plugin 'xolox/vim-misc'
@@ -139,6 +143,16 @@ cnoremap w!! w !sudo dd of=%
     map <C-n> :NERDTreeToggle<CR>
     " close vim fully if the only other open buffer is a NT
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+    " UtilSnips:
+    " Trigger configuration. Do not use <tab> if you use
+    " https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+    
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
 "}}}
 " Basics ----------------------------------------------------"{{{
     set t_Co=256                " set 256 term colors
@@ -487,7 +501,7 @@ command! WriteOff call VimRoomUnset()
     inoremap : :<C-g>u
 
     " map CTRL+] to ctrl J (follow link in help file)
-    noremap <C-j> <C-]>
+    noremap <C-m> <C-]>
 "}}}
 " Gui Settings =============================================="{{{
 " some useful vim colorscheme generators:
