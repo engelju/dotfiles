@@ -55,7 +55,7 @@ cnoremap w!! w !sudo dd of=%
     " vim-powerline:    powerful statusline
     "Plugin 'Lokaltog/vim-powerline'
     
-    " vim-surround:     quoting/parenthesizing made simple
+    " vim-surround:     quoting/parenthesizing (ds, cs, ys)
     Plugin 'tpope/vim-surround'
     " vim-repeat:       repeat motions (.) improved
     Plugin 'tpope/vim-repeat'
@@ -65,8 +65,7 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'qpkorr/vim-bufkill'
     " vim-autoclose:    Intelligent autoclose plugin
     Plugin 'Townk/vim-autoclose'
-
-    " vim-easytags
+    " vim-easytags:     autogenerate ctags
     Plugin 'xolox/vim-easytags'
     " Nerdtree:         left hand side file explorer
     Plugin 'scrooloose/nerdtree'
@@ -84,7 +83,7 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'xolox/vim-notes'
 
     " vim-quicktask:
-    Plugin 'aronbieber/vim-quicktask'
+    Plugin 'aaronbieber/vim-quicktask'
     
     " vim-markdown:     makes markdown a recognized ftype
     Plugin 'tpope/vim-markdown'
