@@ -68,6 +68,8 @@ cnoremap w!! w !sudo dd of=%
 
     " vim-easytags
     Plugin 'xolox/vim-easytags'
+    " Nerdtree:         left hand side file explorer
+    Plugin 'scrooloose/nerdtree'
 
     " vim-misc:
     Plugin 'xolox/vim-misc'
@@ -127,6 +129,16 @@ cnoremap w!! w !sudo dd of=%
     let g:user_emmet_install_global = 0
     let g:user_emmet_leader_key='<C-E>'
     autocmd FileType html,css EmmetInstall
+
+    " Nerdtree: 
+    " Open a NERDTree automatically when vim starts if no files
+    " were specified
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    " Open nerdtree with CTRL+N
+    map <C-n> :NERDTreeToggle<CR>
+    " close vim fully if the only other open buffer is a NT
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "}}}
 " Basics ----------------------------------------------------"{{{
     set t_Co=256                " set 256 term colors
