@@ -59,6 +59,8 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'tpope/vim-surround'
     " vim-repeat:       repeat motions (.) improved
     Plugin 'tpope/vim-repeat'
+    " vim-commentary:   gc to add comments
+    Plugin 'tpope/vim-commentary'
     " emmet-vim:        hi-speed html&css editing
     Plugin 'mattn/emmet-vim'
     " vim-bufkill:      del/close buffer without changing layout
