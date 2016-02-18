@@ -75,6 +75,9 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
 
+    " Ctrl-P:           fuzzy file finder
+    Plugin 'ctrlpvim/ctrlp.vim'
+
     " vim-misc:
     Plugin 'xolox/vim-misc'
     " vim-notes:
@@ -153,6 +156,11 @@ cnoremap w!! w !sudo dd of=%
     
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
+
+    " CtrlP:
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
+    let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 "}}}
 " Basics ----------------------------------------------------"{{{
     set t_Co=256                " set 256 term colors
