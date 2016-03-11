@@ -64,8 +64,6 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'tpope/vim-commentary'
     " emmet-vim:        hi-speed html&css editing
     Plugin 'mattn/emmet-vim'
-    " vim-bufkill:      del/close buffer without changing layout
-    Plugin 'qpkorr/vim-bufkill'
     " vim-autoclose:    Intelligent autoclose plugin
     Plugin 'Townk/vim-autoclose'
     " vim-easytags:     autogenerate ctags
@@ -79,6 +77,12 @@ cnoremap w!! w !sudo dd of=%
 
     " Ctrl-P:           fuzzy file finder
     Plugin 'ctrlpvim/ctrlp.vim'
+    
+    " Buffer handling:
+    "Plugin 'b4b4r07/vim-buftabs'
+    Plugin 'bling/vim-bufferline'
+    " vim-bufkill:      del/close buffer without changing layout
+    Plugin 'qpkorr/vim-bufkill'
 
     " vim-misc:
     Plugin 'xolox/vim-misc'
@@ -93,13 +97,11 @@ cnoremap w!! w !sudo dd of=%
     " xmledit:          xml edit support
     Plugin 'sukima/xmledit'
 
-    Plugin 'b4b4r07/vim-buftabs'
 
     ""Plugin 'tpope/vim-fugitive'
     ""Plugin 'Lokaltog/vim-easymotion'
 
     " vim-scripts repos
-    "Plugin 'buftabs'
     "Plugin 'c.vim'
     "Plugin 'fluxbox.vim'
     "Plugin 'fluxkeys.vim'
@@ -142,7 +144,7 @@ cnoremap w!! w !sudo dd of=%
     "let g:bufferline_pathshorten = 1
     
     " Bufkill: remap bclose
-    nnoremap bd :BD<cr>
+    nnoremap :bd<CR> :BD<cr>
      
     " Easytags: Disable autoupdate
     "let g:easytags_auto_update = 0
