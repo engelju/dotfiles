@@ -7,6 +7,8 @@ alias urxvt='urxvt +sb'
 
 #alias lp='leafpad'
 #alias mp='mousepad'
+alias qb="qutebrowser"
+alias reddit="rtv"
 
 alias mount='mount |column -t'
 alias scrot='import -window root screenshot.png'
