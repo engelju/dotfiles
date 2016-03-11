@@ -513,7 +513,8 @@ command! WriteOff call VimRoomUnset()
     noremap <C-m> <C-]>
 
     " map ,ev to edit vimrc
-    nmap ,ev :e ~/.vimrc<CR>
+    nmap <leader>ev :e ~/.vimrc<CR>
+
     "laravel specific mappings
     nmap <leader>lr :e app/Http/routes.php<cr>
     nmap <leader>lca :e config/app.php<cr>
@@ -528,6 +529,9 @@ command! WriteOff call VimRoomUnset()
     
     " Run PHPUnit tests
     map <Leader>t :!phpunit %<cr>
+
+    " Edit todo list
+    nmap <leader>em :e ~/Dropbox/Metanet/todo.txt<cr>
 "}}}
 " Gui Settings =============================================="{{{
 " some useful vim colorscheme generators:
