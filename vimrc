@@ -56,27 +56,31 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'itchyny/lightline.vim'
     "Plugin 'vim-airline/vim-airline'
     
-    " vim-surround:     quoting/parenthesizing (ds, cs, ys)
-    Plugin 'tpope/vim-surround'
     " vim-repeat:       repeat motions (.) improved
     Plugin 'tpope/vim-repeat'
+    " targets.vim:      faster/better ciw/cib etc
+    Plugin 'wellle/targets.vim'
+    " vim-surround:     quoting/parenthesizing (ds, cs, ys)
+    Plugin 'tpope/vim-surround'
     " vim-commentary:   gc to add comments
     Plugin 'tpope/vim-commentary'
     " emmet-vim:        hi-speed html&css editing
     Plugin 'mattn/emmet-vim'
     " vim-autoclose:    Intelligent autoclose plugin
     Plugin 'Townk/vim-autoclose'
-    " vim-easytags:     autogenerate ctags
-    Plugin 'xolox/vim-easytags'
+    " Ctrl-P:           fuzzy file finder
+    Plugin 'ctrlpvim/ctrlp.vim'
     " Nerdtree:         left hand side file explorer
     Plugin 'scrooloose/nerdtree'
+    " vim-easytags:     autogenerate ctags
+    Plugin 'xolox/vim-easytags'
+    " vim-gitgutter:    display git changes
+    Plugin 'airblade/vim-gitgutter'
+    
     " Utilsnips:        snippet manager
     " see http://vimcasts.org/episodes/meet-ultisnips/
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
-
-    " Ctrl-P:           fuzzy file finder
-    Plugin 'ctrlpvim/ctrlp.vim'
     
     " Buffer handling:
     "Plugin 'b4b4r07/vim-buftabs'
@@ -88,7 +92,6 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'xolox/vim-misc'
     " vim-notes:
     Plugin 'xolox/vim-notes'
-
     " vim-quicktask:
     Plugin 'aaronbieber/vim-quicktask'
     
@@ -97,18 +100,12 @@ cnoremap w!! w !sudo dd of=%
     " xmledit:          xml edit support
     Plugin 'sukima/xmledit'
 
-
-    ""Plugin 'tpope/vim-fugitive'
-    ""Plugin 'Lokaltog/vim-easymotion'
-
     " vim-scripts repos
     "Plugin 'c.vim'
     "Plugin 'fluxbox.vim'
     "Plugin 'fluxkeys.vim'
     "Plugin 'gtk-vim-syntax'
     "Plugin 'matrix.vim'
-    " searchComplete:   Tab completion while searching
-    "Plugin 'SearchComplete'
    
     " non github repos
     ""Plugin 'http://git.wincent.com/command-t.git'
