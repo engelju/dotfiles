@@ -85,7 +85,8 @@ alias killchrome="pkill -9 -f 'Google Chrome\.app/.*/MacOS/Google Chrome Helper 
 alias killchrome2='killall -9 -m "Chrome Helper"'
 
 # start mocp with fitting theme
-alias mocp="mocp -T lianli"
+#alias mocp="mocp -T lianli"
+alias mocp="mocp -T green_theme"
 
 alias mysqli="mycli -u root" #pw: root
 alias httpie="http"
