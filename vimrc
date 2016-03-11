@@ -154,7 +154,7 @@ cnoremap w!! w !sudo dd of=%
     " Vimnotes: Set notes plugin settings
     "let g:notes_directories = ['~/Documents/Notes', 
     "                           '~/Dropbox/Shared Notes']
-    let g:notes_directories = ['~/notes']
+    let g:notes_directories = ['~/Dropbox/Notizen']
     "let g:notes_directory = '~/notes/'
     let g:notes_suffix = '.txt'
 
@@ -305,7 +305,6 @@ cnoremap w!! w !sudo dd of=%
 "}}}
 " Folding  --------------------------------------------------"{{{
     set foldenable              " Turn on folding
-    set foldmethod=manual       " But do it manually
     
     " Generates \{\{\{ as fold markers -> ugly but saves folding
     set foldmethod=marker       " Fold on the marker
