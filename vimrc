@@ -514,6 +514,20 @@ command! WriteOff call VimRoomUnset()
 
     " map ,ev to edit vimrc
     nmap ,ev :e ~/.vimrc<CR>
+    "laravel specific mappings
+    nmap <leader>lr :e app/Http/routes.php<cr>
+    nmap <leader>lca :e config/app.php<cr>
+    nmap <leader>lcd :e config/database.php<cr>
+    nmap <leader>lc :e composer.json<cr>
+
+    " php / laravel abbrvs
+    abbrev pft PHPUnit_Framework_TestCase
+    abbrev gm !php artisan generate:model
+    abbrev gc !php artisan generate:controller
+    abbrev gmig !php artisan generate:migration
+    
+    " Run PHPUnit tests
+    map <Leader>t :!phpunit %<cr>
 "}}}
 " Gui Settings =============================================="{{{
 " some useful vim colorscheme generators:
