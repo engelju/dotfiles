@@ -583,5 +583,6 @@ else
     "colorscheme default
     colorscheme jeng-256
     set nocursorline
+    set t_ut=
 endif
 " ==========================================================="}}}
