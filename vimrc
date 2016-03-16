@@ -166,8 +166,8 @@ cnoremap w!! w !sudo dd of=%
     " Nerdtree: 
     " Open a NERDTree automatically when vim starts if no files
     " were specified
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    "autocmd StdinReadPre * let s:std_in=1
+    "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " Open nerdtree with CTRL+N
     map <C-n> :NERDTreeToggle<CR>
     " close vim fully if the only other open buffer is a NT
