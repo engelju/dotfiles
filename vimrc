@@ -553,6 +553,9 @@ command! WriteOff call VimRoomUnset()
 
     " Edit todo list
     nmap <leader>em :e ~/Dropbox/Metanet/todo.txt<cr>
+
+    " keep cursor in place while joining lines
+    nnoremap J mzJ`z
 "}}}
 " Gui Settings =============================================="{{{
 " some useful vim colorscheme generators:
