@@ -208,3 +208,12 @@ soflow() {
 
 weather(){ curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-<YOURZIPORLOCATION>}"|perl -ne '/<title>([^<]+)/&&printf "%s: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';
 }
+
+function ytplay {
+     youtube-dl --default-search=ytsearch: \
+                --youtube-skip-dash-manifest \
+                --output="${TMPDIR:-/tmp/}%(title)-s%(id)s.%(ext)s" \
+                --restrict-filenames \
+                --format="bestaudio[ext!=webm]" \
+                --exec=mplayer -vvv "$*"
+}
