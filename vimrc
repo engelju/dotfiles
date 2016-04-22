@@ -258,7 +258,8 @@ cnoremap w!! w !sudo dd of=%
 
     set showmatch               " show matching brackets
     set matchtime=3             " blinking time for matching brackets
-    "set timeoutlen=500          " time waiting for next char in command
+    set timeoutlen=500          " time waiting for next char in command
+    set ttimeoutlen=10          " time waiting for next char in command
 
     "if has('gui_running')
     "    set list
