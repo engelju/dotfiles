@@ -271,7 +271,7 @@ cnoremap w!! w !sudo dd of=%
     "set listchars=tab:»·,trail:«,eol:¶
     set listchars=tab:»·,trail:·,eol:¶
     "nmap <silent> <leader>s :set nolist!<CR>
-    "}}}
+"}}}
 " Text Formatting/Layout ------------------------------------"{{{
     set wrapmargin=15           " wrap too long sentences
     set wrapscan                " search scan wraps around file
