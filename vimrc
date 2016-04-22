@@ -12,7 +12,8 @@
 ""  autocmd bufwritepost .vimrc source $MYVIMRC
 ""endif
 
-let mapleader = ","             " remap leader trigger
+nnoremap <SPACE> <Nop>
+let mapleader = " "             " remap leader trigger
 "nore , :                       " remap coomand-line trigger
 
 " in case you forgot sudo
@@ -451,8 +452,8 @@ command! WriteOff call VimRoomUnset()
     " == END LEADER KEY MAPPINGS ============================"}}}
 
     " space / shift-space scroll in normal mode
-    nnoremap <space> <C-e>
-    nnoremap <S-space> <C-y>
+    "nnoremap <space> <C-e>
+    "nnoremap <S-space> <C-y>
     
     " faster navigation
     nnoremap <C-e> 3<C-e>
