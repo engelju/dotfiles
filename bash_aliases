@@ -54,6 +54,8 @@ alias cal='cal -m3'
 alias today='date +"%A, %B %-d, %Y"'
 alias year="when --past=0 --future=365 c"
 alias appointments="when"
+alias weather="curl wttr.in/zurich"
+alias weather2="finger zurich@graph.no"
 
 # screen shortcuts
 alias lsscr='screen -list'
