@@ -25,6 +25,7 @@ fi
 
 # Set global variables ##################################
 
+export TERM=screen-256color
 export EDITOR=vim
 export WINEDITOR=mvim
 
