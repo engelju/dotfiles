@@ -207,9 +207,6 @@ soflow() {
     exec w3m "http://sa.column80.com/?s=$search&t=intitle"
 }
 
-weather(){ curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-<YOURZIPORLOCATION>}"|perl -ne '/<title>([^<]+)/&&printf "%s: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';
-}
-
 function ytplay {
      youtube-dl --default-search=ytsearch: \
                 --youtube-skip-dash-manifest \
