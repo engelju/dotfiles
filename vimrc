@@ -34,11 +34,6 @@ cnoremap w!! w !sudo dd of=%
 "   :PluginSearch(!) foo - search(or refresh cache first) for foo
 "   :PluginClean(!)      - confirm(or auto-approve) removal of unused plugins
 " see :h vundle for more details or wiki for FAQ
-"
-" NOTE: now it seems its more like s/Bundle/Plugin/
-"       therefore: :PluginInstall
-"
-" NOTE: comments after Bundle command are not allowed..
 
     filetype off                    " required!
 
