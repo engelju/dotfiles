@@ -322,40 +322,6 @@ cnoremap w!! w !sudo dd of=%
     set foldtext=SimpleFoldText() " Custom fold text function
                                   " (cleaner than default)
                                   "}}}
-" Powerline / Statusline ------------------------------------"{{{
-    " autocmd VimEnter,BufRead,BufNewFile * highlight StatusLineGray  
-    "     \   cterm=bold ctermfg=231 ctermbg=241 gui=bold guifg=white guibg=#666666
-    " autocmd VimEnter,BufRead,BufNewFile * highlight StatusLineRed
-    "     \   cterm=bold ctermfg=231 ctermbg=88 gui=bold guifg=white guibg=#913d3b
-    " autocmd VimEnter,BufRead,BufNewFile * highlight StatusLineGreen
-    "     \   cterm=bold ctermfg=231 ctermbg=28 gui=bold guifg=white guibg=#368736
- 
-    " set statusline=
-    " set stl+=%#StatusLineGray#\ %n\ %*              " buffer number
-    " set stl+=%#StatusLineGreen#%{fugitive#statusline()[4:-2]}%* " Git status
-    " set stl+=%#StatusLineRed#%r%*                   " read-only flag
-    " set stl+=%#StatusLineRed#%m%*                   " modified flag 
-    " set stl+=\ %<\"%f\"\                            " file name
-    " set stl+=%y                                     " file type
-    " set stl+=[%{strlen(&fenc)?&fenc:&enc}           " file encoding
-    " set stl+=%{&bomb?',BOM':''}                     " BOM flag
-    " set stl+=%{&ff!='unix'?','.toupper(&ff):''}]\   " file format
-    " set stl+=%=                                     " left/right separator
-    " set stl+=%-20.(%l/%L,%c%)\ %P                   " cursor position
- 
-    " let Powerline_cache_enabled = 1
-    " if Powerline_cache_enabled == 0
-    "     call system('rm -f ~/.vim/tmp/powerline.*.cache')
-    " end
- 
-    " if has('gui_running')
-    "     let Powerline_cache_file = expand('~/.vim/tmp/powerline.gui.cache')
-    "     let Powerline_symbols = 'fancy'
-    " else
-    "     let Powerline_cache_file = expand('~/.vim/tmp/powerline.term.cache')
-    "     let Powerline_symbols = 'unicode'
-    " end
-"}}}
 " Vimroom ---------------------------------------------------"{{{
 " turn-on distraction free writing mode for all txt files
 "au BufNewFile,BufRead *.{txt,rst,md,mdown,mkd,mkdn,markdown,mdwn} call VimRoom()
