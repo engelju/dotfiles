@@ -96,6 +96,8 @@ cnoremap w!! w !sudo dd of=%
     " xmledit:          xml edit support
     Plugin 'sukima/xmledit'
 
+    Plugin 'spf13/PIV'
+
     " vim-scripts repos
     "Plugin 'c.vim'
     "Plugin 'fluxbox.vim'
@@ -183,6 +185,7 @@ cnoremap w!! w !sudo dd of=%
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
     let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 "}}}
 " Basics ----------------------------------------------------"{{{
     set t_Co=256                " set 256 term colors
