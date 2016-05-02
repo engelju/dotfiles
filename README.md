@@ -8,3 +8,5 @@ Add a new dotfile to the repository:
 
 Link the dotfile from the repo to the homedir
     ln -s ~/dotfiles/dotfile ~/.dotfile
+
+TODO: explain howto setup vim (ie. howto set up plugins and vundle)
