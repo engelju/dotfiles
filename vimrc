@@ -436,10 +436,6 @@ command! WriteOff call VimRoomUnset()
     nnoremap cw ciw
     nnoremap dw daw
 
-    " original f is pretty useless, map it to search
-    "nnoremap f /
-    "nnoremap ff :nohlsearch<CR>
-
     "set window movement leading char to 's' so you dont get emacs fingers
     nnoremap s <C-W>
 
