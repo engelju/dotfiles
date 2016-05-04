@@ -63,6 +63,10 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'tpope/vim-commentary'
     " vim-repeat:       repeat motions (.) improved
     Plugin 'tpope/vim-repeat'
+    " vim-characterize: ga (dec/oc/hex on a char) + unicode, vim, emoji, html
+    Plugin 'tpope/vim-characterize'
+    " vim-eunuch:       add :Remove, :Rename et al.
+    Plugin 'tpope/vim-eunuch'
     " vim-autoclose:    intelligent autoclose plugin
     Plugin 'Townk/vim-autoclose'
     " vim-bufferline:   display bufferlist in cmdline
