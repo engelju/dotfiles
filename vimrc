@@ -270,6 +270,10 @@ cnoremap w!! w !sudo dd of=%
     "set listchars=tab:»·,trail:«,eol:¶
     set listchars=tab:»·,trail:·,eol:¶
     "nmap <silent> <leader>s :set nolist!<CR>
+
+    " always keep splits 50/50 when resizing window, same as CTRL+W =
+    autocmd VimResized * wincmd =
+    set equalalways             " always create inner splits of 50/50 size
 "}}}
 " Text Formatting/Layout ------------------------------------"{{{
     set wrapmargin=15           " wrap too long sentences
