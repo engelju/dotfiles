@@ -50,40 +50,28 @@ cnoremap w!! w !sudo dd of=%
     
     " lightline:        powerful statusline
     Plugin 'itchyny/lightline.vim'
-    "Plugin 'vim-airline/vim-airline'
     
-    " vim-repeat:       repeat motions (.) improved
-    Plugin 'tpope/vim-repeat'
+    " nerdtree:         left hand side file explorer
+    Plugin 'scrooloose/nerdtree'
+    " Ctrl-P:           fuzzy file finder
+    Plugin 'ctrlpvim/ctrlp.vim'
     " targets.vim:      faster/better ciw/cib etc
     Plugin 'wellle/targets.vim'
     " vim-surround:     quoting/parenthesizing (ds, cs, ys)
     Plugin 'tpope/vim-surround'
-    " vim-commentary:   gc to add comments
+    " vim-commentary:   gc{motion} to add comments
     Plugin 'tpope/vim-commentary'
-    " emmet-vim:        hi-speed html&css editing
-    Plugin 'mattn/emmet-vim'
-    " vim-autoclose:    Intelligent autoclose plugin
+    " vim-repeat:       repeat motions (.) improved
+    Plugin 'tpope/vim-repeat'
+    " vim-autoclose:    intelligent autoclose plugin
     Plugin 'Townk/vim-autoclose'
-    " Ctrl-P:           fuzzy file finder
-    Plugin 'ctrlpvim/ctrlp.vim'
-    " Nerdtree:         left hand side file explorer
-    Plugin 'scrooloose/nerdtree'
-    " vim-easytags:     autogenerate ctags
-    Plugin 'xolox/vim-easytags'
-    " vim-gitgutter:    display git changes
-    Plugin 'airblade/vim-gitgutter'
-    
-    " Utilsnips:        snippet manager
-    " see http://vimcasts.org/episodes/meet-ultisnips/
-    Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
-    
-    " Buffer handling:
-    "Plugin 'b4b4r07/vim-buftabs'
+    " vim-bufferline:   display bufferlist in cmdline
     Plugin 'bling/vim-bufferline'
     " vim-bufkill:      del/close buffer without changing layout
     Plugin 'qpkorr/vim-bufkill'
-
+    " vim-gitgutter:    display git changes
+    Plugin 'airblade/vim-gitgutter'
+    
     " vim-misc:
     Plugin 'xolox/vim-misc'
     " vim-notes:
@@ -91,11 +79,20 @@ cnoremap w!! w !sudo dd of=%
     " vim-quicktask:
     Plugin 'aaronbieber/vim-quicktask'
     
+    " vim-easytags:     autogenerate ctags
+    Plugin 'xolox/vim-easytags'
+    " ultisnips:        snippet manager
+    " see http://vimcasts.org/episodes/meet-ultisnips/
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+    
+    " emmet-vim:        hi-speed html&css editing
+    Plugin 'mattn/emmet-vim'
     " vim-markdown:     makes markdown a recognized ftype
     Plugin 'tpope/vim-markdown'
     " xmledit:          xml edit support
     Plugin 'sukima/xmledit'
-
+    " PIV/PHP:          PHP support
     Plugin 'spf13/PIV'
 
     " vim-scripts repos
