@@ -521,6 +521,9 @@ command! WriteOff call VimRoomUnset()
     " Edit todo list
     nmap <leader>em :e ~/Dropbox/Metanet/todo.txt<cr>
 
+    " Open recent notes
+    nmap <leader>ern :RecentNotes<cr>
+
     " keep cursor in place while joining lines
     nnoremap J mzJ`z
 "}}}
