@@ -534,6 +534,10 @@ command! WriteOff call VimRoomUnset()
 
     " keep cursor in place while joining lines
     nnoremap J mzJ`z
+
+    " keep search terms in the middle of the buffer
+    nmap n :norm! nzzzv<CR>
+    nmap N :norm! Nzzzv<CR>
 "}}}
 " Gui Settings =============================================="{{{
 " some useful vim colorscheme generators:
