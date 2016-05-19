@@ -540,29 +540,22 @@ command! WriteOff call VimRoomUnset()
 "   http://www.villustrator.com/
 "   http://bytefluent.com/vivify/
 if has("gui_running")
-    "win 83 50
-
     " colorscheme blackdust
     " colorscheme darktango
     " colorscheme dw_*
     " colorscheme jellybeans
-    colorscheme kellys
-    " matrix, molokai
-    " colorscheme asmdev " my color scheme (only works in GUI)
     "colorscheme BusyBee
+    " colorscheme asmdev " my color scheme (only works in GUI)
+    colorscheme kellys
 
     "set go-=m go-=T go-=r go-=l
     set guioptions=e   "use GUI tabs, not console style tabs
     set guifont=PT\ Mono:h13
 else
-    syntax enable
+    " command line vim
     set background=dark
-    "colorscheme Mustang_Vim_Colorscheme_by_hcalves
-    "colorscheme wombat256mod
-    "colorscheme xoria256
-    "colorscheme newsprint
-    "colorscheme default
     colorscheme jeng-256
+    syntax enable
     set nocursorline
     set t_ut=
 endif
