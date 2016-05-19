@@ -305,9 +305,6 @@ cnoremap w!! w !sudo dd of=%
     ""set virtualedit=block       " make it possible to select everything
     set virtualedit=all         " make it possible to select everything
 
-    "neat firefox preview
-    command Preview :!firefox %<CR>
-
     "highlights the background of text that is > 80 columns wide "
     "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
     "match OverLength /\%81v.\+/
