@@ -101,9 +101,6 @@ cnoremap w!! w !sudo dd of=%
 
     " vim-scripts repos
     "Plugin 'c.vim'
-    "Plugin 'fluxbox.vim'
-    "Plugin 'fluxkeys.vim'
-    "Plugin 'gtk-vim-syntax'
     "Plugin 'matrix.vim'
    
     " non github repos
