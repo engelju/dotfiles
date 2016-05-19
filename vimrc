@@ -198,6 +198,21 @@ cnoremap w!! w !sudo dd of=%
     let g:ctrlp_cmd = 'CtrlP'
     let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+    " PHP.vim, see: https://github.com/StanAngeloff/php.vim/issues/37
+    let php_var_selector_is_identifier = 0
+    function! PhpSyntaxOverride()
+        hi! def link phpDocTags  phpDefine
+        hi! def link phpDocParam phpType
+        hi! phpFunctions ctermfg=172 ctermbg=NONE cterm=NONE
+        hi! phpVarSelector ctermfg=69 ctermbg=NONE cterm=NONE
+        hi! phpMemberSelector ctermfg=136 ctermbg=NONE cterm=NONE
+    endfunction
+
+    augroup phpSyntaxOverride
+        autocmd!
+        autocmd FileType php call PhpSyntaxOverride()
+    augroup END
+
 "}}}
 " Basics ----------------------------------------------------"{{{
     set t_Co=256                " set 256 term colors
