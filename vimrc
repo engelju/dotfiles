@@ -538,6 +538,11 @@ command! WriteOff call VimRoomUnset()
     " keep search terms in the middle of the buffer
     nmap n :norm! nzzzv<CR>
     nmap N :norm! Nzzzv<CR>
+
+    " When using { and } you never want my cursor to be on an empty line,
+    " but rather the first or last line of text in a paragraph.
+    :nnoremap <expr> { len(getline(line('.')-1)) > 0 ? '{+' : '{-'
+    :nnoremap <expr> } len(getline(line('.')+1)) > 0 ? '}-' : '}+'
 "}}}
 " Gui Settings =============================================="{{{
 " some useful vim colorscheme generators:
