@@ -123,7 +123,7 @@ cnoremap w!! w !sudo dd of=%
     call vundle#end()
     filetype plugin indent on     " required!
 "}}}
-" Plugin Configuratiion -------------------------------------"{{{
+" Plugin Configuration --------------------------------------"{{{
 
     " L,ightline:
     "let g:lightline = {
