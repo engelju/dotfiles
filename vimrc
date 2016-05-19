@@ -99,6 +99,20 @@ cnoremap w!! w !sudo dd of=%
     " PIV/PHP:          PHP support
     Plugin 'spf13/PIV'
 
+    " plugins to test:
+    " ----------------
+    " tpope/vim-sleuth      --> adjust shiftwidth and expandtab based on project
+    " sheerun/vim-polyglot  --> add all them syntaxes
+    " tommcdo/vim-lion      --> algin text; gl & gL ==> glip= / 4gLi(
+    " samsonw/vim-task      --> simple todo.txt task list formatter
+    " dhruvasagar/vim-table-mode
+    "   --> <leader>tm = create tables, <leader>tt with existing text
+    "   --> <leader>tdd delete table row, <leader>tdc delete table column
+    "   --> add text obj: i| a| & [| move left ]| move right {| & }| - up & down
+    " textobjects:
+    "   kana/vim-textobj-function           --> if / af, iF / aF
+    "   coderifous/textobj-word-column.vim  --> ic / ac, iC / aC
+
     " vim-scripts repos
     "Plugin 'c.vim'
     "Plugin 'matrix.vim'
