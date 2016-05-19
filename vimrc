@@ -419,6 +419,10 @@ command! WriteOff call VimRoomUnset()
     " Command: ,soff
     nnoremap <leader>soff :set syntax=<CR>
     
+    " vim as a hex editor :)
+     map <leader>hex :%!xxd<CR>
+     map <leader>nhex :%xxd -r<CR>
+    
     " == END LEADER KEY MAPPINGS ============================"}}}
 
     " space / shift-space scroll in normal mode
@@ -469,10 +473,6 @@ command! WriteOff call VimRoomUnset()
     cabbrev Wq wq
     cabbrev W w
     cabbrev Q q
-
-    " vim as a hex editor :)
-     map <leader>hex :%!xxd<CR>
-     map <leader>nhex :%xxd -r<CR>
 
     " rempaping ` to '
     " 'a will jump to the line marked with ma
