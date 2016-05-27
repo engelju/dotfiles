@@ -169,6 +169,7 @@ cnoremap w!! w !sudo dd of=%
     let g:notes_directories = ['~/Dropbox/Notizen']
     "let g:notes_directory = '~/notes/'
     let g:notes_suffix = '.txt'
+    let g:notes_html_template = '~/Dropbox/Notizen/template.html'
 
     " Emmet: use <zen-leader>, for zencoding
     let g:user_emmet_install_global = 0
