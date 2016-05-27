@@ -80,6 +80,8 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'xolox/vim-misc'
     " vim-notes:
     Plugin 'xolox/vim-notes'
+    " goyo.vim:         distraction free writing
+    Plugin 'junegunn/goyo.vim'
     " vim-quicktask:
     Plugin 'aaronbieber/vim-quicktask'
     
@@ -348,41 +350,6 @@ cnoremap w!! w !sudo dd of=%
     set foldtext=SimpleFoldText() " Custom fold text function
                                   " (cleaner than default)
                                   "}}}
-" Vimroom ---------------------------------------------------"{{{
-" turn-on distraction free writing mode for all txt files
-"au BufNewFile,BufRead *.{txt,rst,md,mdown,mkd,mkdn,markdown,mdwn} call VimRoom()
-
-function VimRoom()
-    ""set fullscreen                " go to fullscreen editing mode
-    ""set background=light
-    ""set lines=40 columns=100        " size of the editable area
-    set laststatus=0                " don't show status line
-    set showtabline=0               " don't tab bar
-    set noruler                     " don't show ruler
-    set nonumber                    " dont show numbers
-    set foldcolumn=8                " add left margin
-    highlight! link FoldColumn Normal
-    highlight NonText ctermfg=235
-    set wrapmargin=10               " Add a right margin, sort of
-    set linebreak                   " break the lines on words
-
-    " from write.vim
-    setlocal spell wrap display+=lastline nolist noruler linebreak showtabline=0
-    setlocal tw=0 nonu foldcolumn=8 wrapmargin=8 laststatus=0
-    noremap  <buffer> <silent> k gk
-    noremap  <buffer> <silent> j gj
-endfunction
-
-function VimRoomUnset()
-    setlocal tw< nonu< nornu<
-    setlocal spell< wrap< display< list< linebreak<
-    silent! unmap <buffer> k
-    silent! unmap <buffer> j
-endfunction
-
-command! WriteOn  call VimRoom()
-command! WriteOff call VimRoomUnset()
-"}}}
 " Key Remapping ---------------------------------------------"{{{
 "   :map     ==> recursive mapping
 "     Recursive means that the mapping is expanded to a result,
