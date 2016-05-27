@@ -38,7 +38,7 @@ alias gl="git log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Cre
 alias glgraph="git log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset' --all"
 alias glbranch="git log --graph --simplify-by-decoration --pretty=format:'%d' --all"
 
-alias gls='find /home/engelju -name ".git"'
+alias gls='find ~ -name ".git"'
 
 #alias l.='ls -dF .[a-zA-Z0-9]* --color=tty' #only show dotfiles
 alias ls="ls --color --time-style=long-iso"
