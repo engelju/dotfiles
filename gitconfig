@@ -1,9 +1,44 @@
-[gui]
-	recentrepo = /home/engelju/tmp/git-test
 [user]
 	name = Julie Engel
 	email = jeng@humanoid.net
+[core]
+    editor = vim
+    excludesfile = /Users/julieengel/.gitignore_global
+    quotepath = false
+    autocrlf = input
+[merge]
+    tool = vimdiff
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -RFX
+    show = diff-so-fancy | less --tabs=4 -RFX
+[alias]
+    lg = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'
+    lol = log --decorate --oneline --abbrev-commit --all
+    lgraph = log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset' --all
+    lbranch = log --graph --simplify-by-decoration --pretty=format:'%d' --all
+    today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+    recent = log --stat --since='7 Day Ago' --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(yellow bold)%ar%Creset %C(red bold)%an%Creset %C(white bold)%s%Creset' --abbrev-commit --date=relative
+    changelog = log --pretty=format:'[%ad] %C(auto)%h %Cred%d%Creset %s (%Cgreen%an%Creset)' --abbrev-commit --date=short
+    unstage = reset HEAD
+    info = show
+    st = status -sb
+[push]
+    default = simple
+[http]
+    postBuffer = 524288000
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+    ui = always
+[color "diff"]
+    meta = yellow bold
+    commit = green bold
+    frag = magenta bold
+    old = red
+    new = green
+    whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = red 52
+	newNormal = green
+	newHighlight = green 22
+[diff]
+	compactionHeuristic = true
