@@ -33,6 +33,7 @@ export WINEDITOR=mvim
 export GOPATH=$HOME/Desktop/code/golang
 PATH="~/bin:$GOPATH/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
