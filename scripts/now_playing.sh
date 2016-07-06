@@ -2,7 +2,7 @@
 # todo:
 # add mocp
 # cleanup osascript
-NOW_PLAYING=$(osascript ~/dotfiles/scripts/now_playing.scpt)
+NOW_PLAYING=$(osascript ~/dotfiles/scripts/now_playing_raw.scpt)
 
 if [ $NOW_PLAYING -eq 1 ]; then
     # curl gds.fm
