@@ -1,2 +1,2 @@
-mv .dotfile ~/dotfiles/dotfile
-ln -s ~/dotfiles/dotfile .dotfile
+add new: mv .dotfile ~/dotfiles/dotfile
+use existing: ln -s ~/dotfiles/dotfile .dotfile

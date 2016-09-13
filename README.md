@@ -16,6 +16,6 @@ Bare Necessities:
 - Setup tmux:
     - Link `tmux.conf`
 - Setup vim:
-    - Link `vimrc` and `vim/`
-    - Setup [Vundle](https://github.com/VundleVim/Vundle.vim): ```git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim```
-    - Start installation process from bash with ```vim +PluginInstall +qall```
+    1. `ln -s ~/dotfiles/vimrc ~/.vimrc`
+    2. `ln -s ~/dotfiles/vim ~/.vim`
+    3. Start `vim` to automatically start the installation process
