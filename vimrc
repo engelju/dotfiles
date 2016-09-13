@@ -36,6 +36,15 @@ cnoremap w!! w !sudo dd of=%
 " see :h vundle for more details or wiki for FAQ
 
     filetype off                    " required!
+    
+    " Autoinstall Vundle {{{
+    if empty(glob('~/.vim/bundle/Vundle.vim'))
+        silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+        "silent !curl -fLo ~/.vim/bundle/Vundle.vim --create-dirs
+            "\ https://raw.githubusercontent.com/VundleVim/Vundle.vim/master/vundle.vim
+        autocmd VimEnter * PluginInstall
+    endif
+    " }}}
 
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
