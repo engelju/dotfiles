@@ -558,6 +558,7 @@ if has("gui_running")
     "set go-=m go-=T go-=r go-=l
     set guioptions=e   "use GUI tabs, not console style tabs
     set guifont=PT\ Mono:h13
+    set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 else
     " command line vim
     set background=dark
