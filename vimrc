@@ -51,10 +51,6 @@ cnoremap w!! w !sudo dd of=%
     " lightline:        powerful statusline
     Plugin 'itchyny/lightline.vim'
     
-    " nerdtree:         left hand side file explorer
-    Plugin 'scrooloose/nerdtree'
-    " Ctrl-P:           fuzzy file finder
-    Plugin 'ctrlpvim/ctrlp.vim'
     " targets.vim:      faster/better ciw/cib etc
     Plugin 'wellle/targets.vim'
     " vim-surround:     quoting/parenthesizing (ds, cs, ys)
@@ -63,8 +59,6 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'tpope/vim-commentary'
     " vim-repeat:       repeat motions (.) improved
     Plugin 'tpope/vim-repeat'
-    " vim-characterize: ga (dec/oc/hex on a char) + unicode, vim, emoji, html
-    Plugin 'tpope/vim-characterize'
     " vim-eunuch:       add :Remove, :Rename et al.
     Plugin 'tpope/vim-eunuch'
     " vim-autoclose:    intelligent autoclose plugin
@@ -75,15 +69,13 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'qpkorr/vim-bufkill'
     " vim-gitgutter:    display git changes
     Plugin 'airblade/vim-gitgutter'
+    " vimagit:          emags magit in vim
+    Plugin 'jreybert/vimagit'
     
     " vim-misc:
     Plugin 'xolox/vim-misc'
     " vim-notes:
     Plugin 'xolox/vim-notes'
-    " goyo.vim:         distraction free writing
-    Plugin 'junegunn/goyo.vim'
-    " vim-quicktask:
-    Plugin 'aaronbieber/vim-quicktask'
     
     " vim-easytags:     autogenerate ctags
     Plugin 'xolox/vim-easytags'
@@ -92,8 +84,6 @@ cnoremap w!! w !sudo dd of=%
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
     
-    " emmet-vim:        hi-speed html&css editing
-    Plugin 'mattn/emmet-vim'
     " vim-markdown:     makes markdown a recognized ftype
     Plugin 'tpope/vim-markdown'
     " xmledit:          xml edit support
@@ -114,6 +104,22 @@ cnoremap w!! w !sudo dd of=%
     " textobjects:
     "   kana/vim-textobj-function           --> if / af, iF / aF
     "   coderifous/textobj-word-column.vim  --> ic / ac, iC / aC
+    "
+    " plugins i removed:
+    " nerdtree:         left hand side file explorer
+    "Plugin 'scrooloose/nerdtree'
+    " Ctrl-P:           fuzzy file finder
+    "Plugin 'ctrlpvim/ctrlp.vim'
+    " vim-characterize: ga (dec/oc/hex on a char) + unicode, vim, emoji, html
+    "Plugin 'tpope/vim-characterize'
+    " goyo.vim:         distraction free writing
+    "Plugin 'junegunn/goyo.vim'
+    " vim-quicktask:
+    "Plugin 'aaronbieber/vim-quicktask'
+    " emmet-vim:        hi-speed html&css editing
+    "Plugin 'mattn/emmet-vim'
+    " vim-instant-markdown: instantly preview md files
+    "Plugin 'suan/vim-instant-markdown'
 
     " vim-scripts repos
     "Plugin 'c.vim'
