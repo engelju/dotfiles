@@ -9,8 +9,8 @@
 [merge]
     tool = vimdiff
 [pager]
-    diff = diff-so-fancy | less --tabs=4 -RFX
-    show = diff-so-fancy | less --tabs=4 -RFX
+    diff = diff-so-fancy | less --tabs=4 -R
+    show = diff-so-fancy | less --tabs=4 -R
 [alias]
     # simple commit overview from all branches
     lol = log --decorate --oneline --abbrev-commit --all
@@ -34,7 +34,8 @@
 [http]
     postBuffer = 524288000
 [color]
-    ui = always
+    ui = auto
+    diff = auto
 [color "diff"]
     meta = yellow bold
     commit = green bold
