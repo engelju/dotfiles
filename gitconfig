@@ -12,13 +12,20 @@
     diff = diff-so-fancy | less --tabs=4 -RFX
     show = diff-so-fancy | less --tabs=4 -RFX
 [alias]
-    lg = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'
+    # simple commit overview from all branches
     lol = log --decorate --oneline --abbrev-commit --all
+    # show recent activity on all branches (only commit msgs, no files/changes)
+    lg = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)' --all
+    # show commits on current branch from within last 24h
+    today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+    # show commits and affected files/changes on current branch from within last 7d
+    recent = log --stat --since='7 Day Ago' --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(yellow bold)%ar%Creset %C(red bold)%an%Creset %C(white bold)%s%Creset' --abbrev-commit --date=relative
+    # show commits and affected files/changes on current branches
+    changelog = log --stat --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(yellow bold)%ar%Creset %C(red bold)%an%Creset %C(white bold)%s%Creset' --abbrev-commit --date=relative
+    # show branch dependencies graphically
     lgraph = log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset' --all
     lbranch = log --graph --simplify-by-decoration --pretty=format:'%d' --all
-    today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
-    recent = log --stat --since='7 Day Ago' --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(yellow bold)%ar%Creset %C(red bold)%an%Creset %C(white bold)%s%Creset' --abbrev-commit --date=relative
-    changelog = log --pretty=format:'[%ad] %C(auto)%h %Cred%d%Creset %s (%Cgreen%an%Creset)' --abbrev-commit --date=short
+    # better mnemonics
     unstage = reset HEAD
     info = show
     st = status -sb
