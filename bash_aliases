@@ -43,8 +43,10 @@ alias gls='find ~ -name ".git"'
 #alias l.='ls -dF .[a-zA-Z0-9]* --color=tty' #only show dotfiles
 alias ls="ls --color --time-style=long-iso"
 alias l.='ls -dF .[a-zA-Z0-9]*' #only show dotfiles
-alias ls="ls -aFh"
-alias ll="ls -alFh"
+alias ls="ls -Fh"
+alias lsh="ls -aFh"
+alias ll="ls -lFh"
+alias llh="ls -alFh"
 
 alias count='wc'
 alias linecount='wc -l'
