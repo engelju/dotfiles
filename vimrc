@@ -40,8 +40,6 @@ cnoremap w!! w !sudo dd of=%
     " Autoinstall Vundle {{{
     if empty(glob('~/.vim/bundle/Vundle.vim'))
         silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-        "silent !curl -fLo ~/.vim/bundle/Vundle.vim --create-dirs
-            "\ https://raw.githubusercontent.com/VundleVim/Vundle.vim/master/vundle.vim
         autocmd VimEnter * PluginInstall
     endif
     " }}}
@@ -162,11 +160,6 @@ cnoremap w!! w !sudo dd of=%
         return info.before . info.current . info.after
     endfunction
 
-    " Bufferline
-    "let g:bufferline_echo = 0
-    "let g:bufferline_show_bufnr = 0
-    "let g:bufferline_pathshorten = 1
-    
     " Bufkill: remap bclose
     nnoremap :bd<CR> :BD<cr>
      
