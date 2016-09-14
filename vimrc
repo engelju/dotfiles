@@ -7,10 +7,10 @@
 "   and from Dr.-Ing. Fritz Mehner, the dude of the c.vim plugin.
 "=============================================================================
 
-" Source the vimrc file after saving it (make sense, doesn't it)
-""if has("autocmd")
-""  autocmd bufwritepost .vimrc source $MYVIMRC
-""endif
+" source the vimrc file after saving it (make sense, doesn't it)
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 
 nnoremap <SPACE> <Nop>
 let mapleader = " "             " remap leader trigger
@@ -360,7 +360,7 @@ cnoremap w!! w !sudo dd of=%
     
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements
                                                       " open folds
-    function SimpleFoldText() " {
+    function! SimpleFoldText() " {
         return getline(v:foldstart).' '
     endfunction "}
     set foldtext=SimpleFoldText() " Custom fold text function
