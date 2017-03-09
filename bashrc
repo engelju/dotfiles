@@ -30,12 +30,19 @@ export EDITOR=vim
 export WINEDITOR=mvim
 
 #own bin
-export GOPATH=$HOME/Desktop/code/golang
 PATH="~/bin:$GOPATH/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=/Applications/MAMP/bin/php/php7.0.10/bin/:$PATH
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+export HTDOCS="/Applications/MAMP/htdocs/"
+alias htdox="cd $HTDOCS/ && ll"
+alias htdocs="cd $HTDOCS/ && ll"
+alias metanet.ch="cd $HTDOCS/metanet.ch/"
+alias barracuda="cd $HTDOCS/barracuda.metanet.ch/"
+alias kerio="cd $HTDOCS/kerio.metanet.ch/"
 
 # Some history settings #################################
 
@@ -228,3 +235,5 @@ man() {
         LESS_TERMCAP_us=$'\e[1;32m' \
             man "$@"
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -9,12 +9,13 @@ alias urxvt='urxvt +sb'
 #alias mp='mousepad'
 alias qb="qutebrowser"
 alias reddit="rtv"
+alias sbb="fahrplan -f"
+alias watch_adam="streamlink twitch.tv/adam13531 source"
 
 alias mount='mount |column -t'
 alias scrot='import -window root screenshot.png'
 #alias mutt='mutt -f imap://engelju@poseidon.nexus-ag.com'
 
-alias htdocs="cd /Applications/MAMP/htdocs/"
 alias love="/Applications/love.app/Contents/MacOS/love"
 
 # general shortcuts
@@ -24,6 +25,7 @@ alias c='clear'
 alias j='jobs'
 alias vim="mvim -v"
 alias vi="vim"
+alias qvi="vim --noplugin"
 
 alias g="git"
 alias gs="git status"
@@ -73,7 +75,8 @@ alias grep=ag
 #alias vi='vim -p -T xterm-256color'
 alias viconk='vim ~/.conkyrc'
 alias vibash='vim ~/.bashrc'
-alias cless="/usr/share/vim/vim70/macros/less.sh"
+#alias cless="/usr/share/vim/vim73/macros/less.sh"
+alias cless="/opt/homebrew-cask/Caskroom/macvim/7.4-74/MacVim-snapshot-74/MacVim.app/Contents/Resources/vim/runtime/macros/less.sh"
 
 alias m="make"
 alias mr="make release"
