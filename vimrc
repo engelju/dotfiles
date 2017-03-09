@@ -18,11 +18,8 @@ let mapleader = " "
 " remap command-line trigger
 nore , :
 
-" in case you forgot sudo
 cnoremap w!! w !sudo dd of=%
-
-" source most common mistakes
-"source ~/.vim/abbrv
+" in case you forgot sudo
 
 " vim grep tipps
 "   https://gist.github.com/3626719
@@ -606,10 +603,9 @@ if has("gui_running")
     " colorscheme blackdust
     " colorscheme darktango
     " colorscheme dw_*
-    " colorscheme jellybeans
-    "colorscheme BusyBee
+    colorscheme BusyBee
     " colorscheme asmdev " my color scheme (only works in GUI)
-    colorscheme kellys
+    "colorscheme kellys
 
     "set go-=m go-=T go-=r go-=l
     set guioptions=e   "use GUI tabs, not console style tabs
