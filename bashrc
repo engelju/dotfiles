@@ -30,9 +30,9 @@ export EDITOR=vim
 export WINEDITOR=mvim
 
 #own bin
-PATH="~/bin:$GOPATH/bin:$PATH"
-export PATH=~/.composer/vendor/bin:$PATH
+PATH="~/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
+export PATH=~/.composer/vendor/bin:$PATH
 export PATH=/Applications/MAMP/bin/php/php7.0.10/bin/:$PATH
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

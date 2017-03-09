@@ -22,6 +22,7 @@
     trustExitCode = true
     cmd = `/usr/local/bin/difffork $LOCAL $REMOTE $BASE $MERGED`
 [diff]
+	submodule = log
     tool = difffork
     compactionHeuristic = true
 	algorithm = histogram
