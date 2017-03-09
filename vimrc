@@ -36,7 +36,7 @@ cnoremap w!! w !sudo dd of=%
 " see :h vundle for more details or wiki for FAQ
 
     filetype off                    " required!
-    
+
     " Autoinstall Vundle {{{
     if empty(glob('~/.vim/bundle/Vundle.vim'))
         silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -48,60 +48,79 @@ cnoremap w!! w !sudo dd of=%
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
-    " let Vundle manage Vundle      " required! 
+    " let Vundle manage Vundle      " required!
     Plugin 'VundleVim/Vundle.vim'
 
     " -- My Plugins here:
-    "
-    " original repos on github
-    
+
+    " -- GUI
     " lightline:        powerful statusline
     Plugin 'itchyny/lightline.vim'
-    
-    " targets.vim:      faster/better ciw/cib etc
-    Plugin 'wellle/targets.vim'
+    " vim-bufferline:   display bufferlist in cmdline
+    Plugin 'bling/vim-bufferline'
+    " vim-bufkill:      del/close buffer without changing layout
+    Plugin 'qpkorr/vim-bufkill'
+    " vim-gitgutter:    display git changes in gutter
+    Plugin 'airblade/vim-gitgutter'
+    " vim-signature:    show markers in gutter
+    Plugin 'kshenoy/vim-signature'
+    " vim-css-color:    show the colors (ie. #fff)
+    Plugin 'ap/vim-css-color'
+    " nerdtree:         left hand side file explorer
+    Plugin 'scrooloose/nerdtree'
+
+    " -- text navigation / text manipulation
     " vim-surround:     quoting/parenthesizing (ds, cs, ys)
     Plugin 'tpope/vim-surround'
     " vim-commentary:   gc{motion} to add comments
     Plugin 'tpope/vim-commentary'
     " vim-repeat:       repeat motions (.) improved
     Plugin 'tpope/vim-repeat'
+    " clever-f.vim:     better handling of 'f'
+    Plugin 'rhysd/clever-f.vim'
     " vim-eunuch:       add :Remove, :Rename et al.
     Plugin 'tpope/vim-eunuch'
-    " vim-autoclose:    intelligent autoclose plugin
-    Plugin 'Townk/vim-autoclose'
-    " vim-bufferline:   display bufferlist in cmdline
-    Plugin 'bling/vim-bufferline'
-    " vim-bufkill:      del/close buffer without changing layout
-    Plugin 'qpkorr/vim-bufkill'
-    " vim-gitgutter:    display git changes
-    Plugin 'airblade/vim-gitgutter'
-    " vimagit:          emags magit in vim
-    Plugin 'jreybert/vimagit'
-    
-    " vim-misc:
-    Plugin 'xolox/vim-misc'
-    " vim-notes:
-    Plugin 'xolox/vim-notes'
-    
+    " vim-characterize: ga (dec/oc/hex on a char) + unicode, vim, emoji, html
+    Plugin 'tpope/vim-characterize'
+    " targets.vim:      faster/better ciw/cib etc
+    Plugin 'wellle/targets.vim'
+    "Plugin 'kana/vim-textobj-user'
+    "Plugin 'kana/vim-textobj-indent'
+    "Plugin 'kana/vim-textobj-function'
+    "Plugin 'kana/vim-textobj-datetime'
+
+    " -- programming helpers
     " vim-easytags:     autogenerate ctags
+    Plugin 'xolox/vim-misc'
     Plugin 'xolox/vim-easytags'
     " ultisnips:        snippet manager
     " see http://vimcasts.org/episodes/meet-ultisnips/
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
-    
-    " vim-markdown:     makes markdown a recognized ftype
-    Plugin 'tpope/vim-markdown'
-    " xmledit:          xml edit support
-    Plugin 'sukima/xmledit'
-    " PIV/PHP:          PHP support
+    " vimagit:          emacs magit in vim
+    Plugin 'jreybert/vimagit'
+    " vim-gitbranch:    get current branch with gitbranch#name()
+    Plugin 'itchyny/vim-gitbranch'
+    " vim-autoclose:    intelligent autoclose plugin
+    Plugin 'Townk/vim-autoclose'
+
+    " -- additional filetype support
+    " emmet-vim:        hi-speed html&css editing
+    "Plugin 'mattn/emmet-vim'
+    "Plugin 'sheerun/vim-polyglot'
     Plugin 'spf13/PIV'
+    "Plugin 'othree/javascript-libraries-syntax'
+    Plugin 'tpope/vim-markdown'
+    Plugin 'tpope/vim-jdaddy'
+    Plugin 'sukima/xmledit'
+    Plugin 'qbbr/vim-twig'
+    Plugin 'ekalinin/Dockerfile.vim'
+
+    Plugin 'xolox/vim-notes'
 
     " plugins to test:
     " ----------------
     " tpope/vim-sleuth      --> adjust shiftwidth and expandtab based on project
-    " sheerun/vim-polyglot  --> add all them syntaxes
     " tommcdo/vim-lion      --> algin text; gl & gL ==> glip= / 4gLi(
     " samsonw/vim-task      --> simple todo.txt task list formatter
     " dhruvasagar/vim-table-mode
@@ -109,73 +128,134 @@ cnoremap w!! w !sudo dd of=%
     "   --> <leader>tdd delete table row, <leader>tdc delete table column
     "   --> add text obj: i| a| & [| move left ]| move right {| & }| - up & down
     " textobjects:
-    "   kana/vim-textobj-function           --> if / af, iF / aF
     "   coderifous/textobj-word-column.vim  --> ic / ac, iC / aC
     "
-    " plugins i removed:
-    " nerdtree:         left hand side file explorer
-    "Plugin 'scrooloose/nerdtree'
-    " Ctrl-P:           fuzzy file finder
-    "Plugin 'ctrlpvim/ctrlp.vim'
-    " vim-characterize: ga (dec/oc/hex on a char) + unicode, vim, emoji, html
-    "Plugin 'tpope/vim-characterize'
-    " goyo.vim:         distraction free writing
-    "Plugin 'junegunn/goyo.vim'
-    " vim-quicktask:
-    "Plugin 'aaronbieber/vim-quicktask'
-    " emmet-vim:        hi-speed html&css editing
-    "Plugin 'mattn/emmet-vim'
     " vim-instant-markdown: instantly preview md files
     "Plugin 'suan/vim-instant-markdown'
-
-    " vim-scripts repos
-    "Plugin 'c.vim'
-    "Plugin 'matrix.vim'
-   
-    " non github repos
-    ""Plugin 'http://git.wincent.com/command-t.git'
 
     call vundle#end()
     filetype plugin indent on     " required!
 "}}}
 " Plugin Configuration --------------------------------------"{{{
 
-    " L,ightline:
-    "let g:lightline = {
-          "\ 'active': {
-          "\   'left': [ ['mode', 'paste'], ['bufferline'], ['readonly', 'modified']]
-          "\ },
-          "\ 'component_function': {
-          "\   'bufferline': 'LightlineBufferLine'
-          "\ }
-        "\ }
-    " \   'right': [ [ 'lineinfo' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-    
-    function! LightlineBufferLine()
-        call bufferline#refresh_status()
-        let info = get(g:, 'bufferline_status_info', {})
-        if empty(info)
-            return ''
-        endif
-        return info.before . info.current . info.after
+    " Lightline: {{{
+    let g:lightline = {
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+          \             [ 'filename'],
+          \             [ 'gitbranch'], ['gitgutter'] ]
+          \ },
+          \ 'component_function': {
+          \   'gitbranch': 'LightLineFugitive',
+          \   'gitgutter': 'LightLineGitGutter',
+          \   'readonly': 'LightLineReadonly',
+          \   'modified': 'LightLineModified',
+          \   'syntastic': 'SyntasticStatuslineFlag',
+          \   'filename': 'LightLineFilename',
+          \ }
+    \ }
+
+    function! LightLineModified()
+      if &filetype == "help"
+        return ""
+      elseif &modified
+        return "+"
+      elseif &modifiable
+        return ""
+      else
+        return ""
+      endif
     endfunction
+
+    function! LightLineReadonly()
+      if &filetype == "help"
+        return ""
+      elseif &readonly
+        return "RO"
+      else
+        return ""
+      endif
+    endfunction
+
+    function! LightLineFugitive()
+      return exists('*gitbranch#name') ? gitbranch#name() : ''
+    endfunction
+
+    function! LightLineGitGutter()
+        if ! exists('*GitGutterGetHunkSummary')
+            \ || ! get(g:, 'gitgutter_enabled', 0)
+            \ || winwidth('.') <= 90
+        return ''
+        endif
+        let symbols = [
+            \ g:gitgutter_sign_added,
+            \ g:gitgutter_sign_modified,
+            \ g:gitgutter_sign_removed
+            \ ]
+        let hunks = GitGutterGetHunkSummary()
+        let ret = []
+        for i in [0, 1, 2]
+        if hunks[i] > 0
+            call add(ret, symbols[i] . hunks[i])
+        endif
+        endfor
+        return join(ret, ' ')
+    endfunction
+
+    function! LightLineFilename()
+      return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+          \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+          \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+    endfunction
+    " }}}
+    " Lightline: Modified jellybeans theme {{{
+    let s:base03    = [ '#151513', 233 ]
+    let s:base02    = [ '#30302c', 236 ]
+    let s:base01    = [ '#4e4e43', 237 ]
+    let s:base00    = [ '#666656', 242 ]
+    let s:base0     = [ '#808070', 244 ]
+    let s:base1     = [ '#949484', 246 ]
+    let s:base2     = [ '#a8a897', 248 ]
+    let s:base3     = [ '#e8e8d3', 253 ]
+    let s:yellow    = [ '#ffb964', 215 ]
+    let s:red       = [ '#cf6a4c', 167 ]
+    let s:magenta   = [ '#f0a0c0', 217 ]
+    let s:blue      = [ '#7697D6', 4   ]
+    let s:orange    = [ '#ffb964', 215 ]
+    let s:green     = [ '#99ad6a', 107 ]
+    let s:white     = [ '#FCFCFC', 15  ]
+
+    let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}, 'terminal': {}}
+    let s:p.normal.left     = [ [ s:white, s:blue ], [ s:base3, s:base02 ] ]
+    let s:p.normal.right    = [ [ s:base02, s:base1 ], [ s:base3, s:base02 ] ]
+    let s:p.inactive.right  = [ [ s:base02, s:base00 ], [ s:base0, s:base02 ] ]
+    let s:p.inactive.left   = [ [ s:base0, s:base02 ], [ s:base00, s:base02 ] ]
+    let s:p.insert.left     = [ [ s:base02, s:orange ], [ s:base3, s:base01 ] ]
+    let s:p.replace.left    = [ [ s:base02, s:red ], [ s:base3, s:base01 ] ]
+    let s:p.visual.left     = [ [ s:base02, s:magenta ], [ s:base3, s:base01 ] ]
+    let s:p.terminal.left   = [ [ s:base02, s:green ], [ s:base3, s:base01 ] ]
+    let s:p.normal.middle   = [ [ s:base0, s:base03 ] ]
+    let s:p.inactive.middle = [ [ s:base00, s:base02 ] ]
+    let s:p.tabline.left    = [ [ s:base3, s:base02 ] ]
+    let s:p.tabline.tabsel  = [ [ s:white, s:blue ] ]
+    let s:p.tabline.middle  = [ [ s:base01, s:base03 ] ]
+    let s:p.tabline.right   = [ [ s:base03, s:base03 ], [ s:base03, s:base03 ] ]
+    let s:p.normal.error    = [ [ s:red, s:base02 ] ]
+    let s:p.normal.warning  = [ [ s:yellow, s:base01 ] ]
+    " }}}
 
     " Bufkill: remap bclose
     nnoremap :bd<CR> :BD<cr>
-     
-    " Easytags: Disable autoupdate
-    "let g:easytags_auto_update = 0
-    
+
     " Quicktask: default settings
     autocmd BufNewFile,BufRead *.qt setf quicktask
     let g:quicktask_snip_default_filetype = 'qt'
     let g:quicktask_snip_win_split_direction = 'vertical'
-    
+
     " Vimnotes: Set notes plugin settings
-    "let g:notes_directories = ['~/Documents/Notes', 
+    "let g:notes_directories = ['~/Documents/Notes',
     "                           '~/Dropbox/Shared Notes']
     let g:notes_directories = ['~/Dropbox/Notizen']
-    "let g:notes_directory = '~/notes/'
     let g:notes_suffix = '.txt'
     let g:notes_html_template = '~/Dropbox/Notizen/template.html'
 
@@ -195,12 +275,10 @@ cnoremap w!! w !sudo dd of=%
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
     " UtilSnips:
-    " Trigger configuration. Do not use <tab> if you use
-    " https://github.com/Valloric/YouCompleteMe.
+    " Trigger configuration. Do not use <tab> if you use github.com/Valloric/YouCompleteMe.
     let g:UltiSnipsExpandTrigger="<tab>"
     let g:UltiSnipsJumpForwardTrigger="<c-j>"
     let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-    
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
 
@@ -218,7 +296,6 @@ cnoremap w!! w !sudo dd of=%
         hi! phpVarSelector ctermfg=69 ctermbg=NONE cterm=NONE
         hi! phpMemberSelector ctermfg=136 ctermbg=NONE cterm=NONE
     endfunction
-
     augroup phpSyntaxOverride
         autocmd!
         autocmd FileType php call PhpSyntaxOverride()
