@@ -423,13 +423,14 @@ cnoremap w!! w !sudo dd of=%
 "}}}
 " Folding  --------------------------------------------------"{{{
     set foldenable              " Turn on folding
-    
+
     " Generates \{\{\{ as fold markers -> ugly but saves folding
     set foldmethod=marker       " Fold on the marker
+
     " Otherwise you'd have to use :mkview & :loadview
     "au BufWinLeave * mkview
-    ""au BufWinEnter * silent loadview
-    
+    "au BufWinEnter * silent loadview
+
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements
                                                       " open folds
     function! SimpleFoldText() " {
