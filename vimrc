@@ -12,9 +12,11 @@ if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
+" remap leader trigger
 nnoremap <SPACE> <Nop>
-let mapleader = " "             " remap leader trigger
-"nore , :                       " remap coomand-line trigger
+let mapleader = " "
+" remap command-line trigger
+nore , :
 
 " in case you forgot sudo
 cnoremap w!! w !sudo dd of=%
@@ -443,7 +445,7 @@ cnoremap w!! w !sudo dd of=%
 "     until the result is no longer mapped to anything else,
 "     or a non-recursive mapping has been applied.
 "   :noremap ==> non-recursive mapping
-"     Non-recursive means the mapping is only expanded once, 
+"     Non-recursive means the mapping is only expanded once,
 "     and that result is applied/executed.
 " Mode letters:
 "   n --> normal mode only                  nmap, nnoremap
@@ -463,10 +465,10 @@ cnoremap w!! w !sudo dd of=%
     map <silent> <F3> :set invhlsearch<CR>
     " F4: Remove whitespace from end of lines
     map <silent> <F4> :%s/\s\+$//g<CR>
-    " F5: ROT13 - fun
-    map <F5> ggVGg?
-    " F6: Make F5 reload .vimrc
+    " F5: Make F5 reload .vimrc
     map <silent> <F5> :source ~/.vimrc<CR>
+    " F6: ROT13 - fun
+    map <F6> ggVGg?
     " F7: Do a word count
     map <silent> <F7> g<C-G>
     " F8: Format paragraph
@@ -474,18 +476,17 @@ cnoremap w!! w !sudo dd of=%
     " F9: Mapping for creating HTML of current buffer
     map <silent> <F9> :runtime! syntax/2html.vim<CR>
     " == END FUNCTION KEYS MAPPINGS ========================="}}}
-     
+
     " == LEADER KEY MAPPINGS ================================"{{{
     " Yank Visual selection as a single line to system clipboard
-    " Command: ,y
-    vnoremap <silent><Leader>y "+y:let @+ = 
+    vnoremap <silent><Leader>y "+y:let @+ =
         \ join(map(split(@+, '\n'), 'substitute(v:val, "^\\s\\+", "", "")'), " ")<CR>
 
     " vim as a hex editor :)
     " Command: ,hex and ,nhex
     map <leader>hex :%!xxd<CR>
     map <leader>nhex :%xxd -r<CR>
-    
+
     " make a line the same length as the line your currently on
     " Command: ,= and ,-
     nnoremap <leader>= yypVr=
@@ -494,25 +495,40 @@ cnoremap w!! w !sudo dd of=%
     " unset syntax for only one buffer
     " Command: ,soff
     nnoremap <leader>soff :set syntax=<CR>
-    
+
     " vim as a hex editor :)
      map <leader>hex :%!xxd<CR>
      map <leader>nhex :%xxd -r<CR>
-    
+
+    " map <leader>ev to edit vimrc
+    nmap <leader>ev :e ~/.vimrc<CR>
+
+    "laravel specific mappings
+    nmap <leader>lr :e app/Http/routes.php<cr>
+    nmap <leader>lca :e config/app.php<cr>
+    nmap <leader>lcd :e config/database.php<cr>
+    nmap <leader>lc :e composer.json<cr>
+
+    " Run PHPUnit tests
+    map <Leader>t :!phpunit %<cr>
+
+    " Edit todo list
+    nmap <leader>em :e ~/Dropbox/Metanet/todo.txt<cr>
+
+    " Open recent notes
+    nmap <leader>ern :RecentNotes<cr>
+
+
     " == END LEADER KEY MAPPINGS ============================"}}}
 
-    " space / shift-space scroll in normal mode
-    "nnoremap <space> <C-e>
-    "nnoremap <S-space> <C-y>
-    
     " faster navigation
     nnoremap <C-e> 3<C-e>
     nnoremap <C-y> 3<C-y>
-    
+
     " also allow scroll in insert mode
     inoremap <C-e> <C-o><C-e>
     inoremap <C-y> <C-o><C-y>
-    
+
     " improve up/down movement on wrapped lines
     nnoremap j gj
     nnoremap k gk
@@ -520,26 +536,19 @@ cnoremap w!! w !sudo dd of=%
     " remap cw & dw
     nnoremap cw ciw
     nnoremap dw daw
+    "
+    " rempaping ` to '
+    " 'a will jump to the line marked with ma
+    " `a will jump to the line AND column so it's better
+    " and ' is easier to reach, so use that
+    nnoremap ' `
+    nnoremap ` '
 
     "set window movement leading char to 's' so you dont get emacs fingers
     nnoremap s <C-W>
 
     "clear highlighted search result after a search
     map // :nohlsearch<CR>
-
-    " map firefox keybindings
-    "map <c-s-tab> :tabprevious<CR>
-    "map <C-tab> :tabnext<CR>
-    "map <C-t> :tabnew<CR>
-    " tab navigation like firefox
-    "nmap <c-s-tab> :tabprevious<cr>
-    "nmap <c-tab> :tabnext<cr>
-    "map <c-s-tab> :tabprevious<cr>
-    "map <c-tab> :tabnext<cr>
-    "imap <c-s-tab> <esc>:tabprevious<cr>i
-    "imap <c-tab> <esc>:tabnext<cr>i
-    "nmap <c-t> :tabnew<cr>:e<space>
-    "imap <c-t> <esc>:tabnew<cr>:e<space>"
 
     " yank to EOL when with Y
     map Y y$
@@ -549,12 +558,6 @@ cnoremap w!! w !sudo dd of=%
     cabbrev Wq wq
     cabbrev W w
     cabbrev Q q
-
-    " rempaping ` to '
-    " 'a will jump to the line marked with ma
-    " `a will jump to the line AND column so it's better
-    nnoremap ' `
-    nnoremap ` '
 
     " Buffer management
     nmap <C-tab> :bn<CR>
@@ -576,29 +579,11 @@ cnoremap w!! w !sudo dd of=%
     " map CTRL+] to ctrl J (follow link in help file)
     noremap <C-m> <C-]>
 
-    " map ,ev to edit vimrc
-    nmap <leader>ev :e ~/.vimrc<CR>
-
-    "laravel specific mappings
-    nmap <leader>lr :e app/Http/routes.php<cr>
-    nmap <leader>lca :e config/app.php<cr>
-    nmap <leader>lcd :e config/database.php<cr>
-    nmap <leader>lc :e composer.json<cr>
-
     " php / laravel abbrvs
     abbrev pft PHPUnit_Framework_TestCase
     abbrev gm !php artisan generate:model
     abbrev gc !php artisan generate:controller
     abbrev gmig !php artisan generate:migration
-    
-    " Run PHPUnit tests
-    map <Leader>t :!phpunit %<cr>
-
-    " Edit todo list
-    nmap <leader>em :e ~/Dropbox/Metanet/todo.txt<cr>
-
-    " Open recent notes
-    nmap <leader>ern :RecentNotes<cr>
 
     " keep cursor in place while joining lines
     nnoremap J mzJ`z
