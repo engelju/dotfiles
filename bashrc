@@ -1,35 +1,22 @@
 # #######################################################
-# #######
 # .bashrc (c) julie engel
 # #######################################################
 
-# Source other files if avail ###########################
+# [ -f /etc/bashrc ] && /etc/bashrc
+[ -f ~/.bash_bindings ] && source ~/.bash_bindings
+[ -f ~/.bash_aliases ]  && source ~/.bash_aliases
+[ -f ~/.bash_prompt ]   && source ~/.bash_prompt
 
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+# Global variables ######################################
 
-# My bash additions #####################################
-
-if [ -f ~/.bash_bindings ]; then
-  source ~/.bash_bindings
-fi
-
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
-fi
-
-if [ -f ~/.bash_prompt ]; then
-  source ~/.bash_prompt
-fi
-
-# Set global variables ##################################
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 export TERM=screen-256color
 export EDITOR=vim
 export WINEDITOR=mvim
 
-#own bin
+# add own bin
 PATH="~/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export PATH=~/.composer/vendor/bin:$PATH
@@ -37,6 +24,7 @@ export PATH=/Applications/MAMP/bin/php/php7.0.10/bin/:$PATH
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
+# add webdev root
 export HTDOCS="/Applications/MAMP/htdocs/"
 alias htdox="cd $HTDOCS/ && ll"
 alias htdocs="cd $HTDOCS/ && ll"
@@ -44,7 +32,7 @@ alias metanet.ch="cd $HTDOCS/metanet.ch/"
 alias barracuda="cd $HTDOCS/barracuda.metanet.ch/"
 alias kerio="cd $HTDOCS/kerio.metanet.ch/"
 
-# Some history settings #################################
+# History settings ######################################
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTIGNORE="ls:exit:logout:cd:pwd:reload:fg:cless"
@@ -56,34 +44,10 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-#unset LS_COLORS
+# unset LS_COLORS
 LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
 
-# #######################################################
-# SHELL FUNCTIONS
-# #
-
-#test if a file should be opened normally, or as root (vi)
-#argc () {
-        #count=0;
-        #for arg in "$@"; do
-                #if [[ ! "$arg" =~ '-' ]]; then count=$(($count+1)); fi;
-        #done;
-        #echo $count;
-#}
-
-#vi () { if [[ `argc "$@"` > 1 ]]; then /usr/bin/vim $@;
-#                elif [ $1 = '' ]; then /usr/bin/vim;
-#                elif [ ! -f $1 ] || [ -w $1 ]; then /usr/bin/vim $@;
-#                else
-#                        echo -n "File is readonly. Edit as root? (Y/n): "
-#                        read -n 1 yn; echo;
-#                        if [ "$yn" = 'n' ] || [ "$yn" = 'N' ];
-#                            then /usr/bin/vim $*;
-#                            else su -c "/usr/bin/vim $*";
-#                        fi
-#                fi
-#            }
+# Shell functions #######################################
 
 # Creates an archive from given directory
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
@@ -156,9 +120,29 @@ awk 'function wl() {
                 printf("%c",c)};};}' | sox -t raw -r 64k -c 1 -e unsigned -b 8 - -d
 }
 
-# #######################################################
-# Handy internet shortcuts
-# #
+#test if a file should be opened normally, or as root (vi)
+#argc () {
+        #count=0;
+        #for arg in "$@"; do
+                #if [[ ! "$arg" =~ '-' ]]; then count=$(($count+1)); fi;
+        #done;
+        #echo $count;
+#}
+
+#vi () { if [[ `argc "$@"` > 1 ]]; then /usr/bin/vim $@;
+#                elif [ $1 = '' ]; then /usr/bin/vim;
+#                elif [ ! -f $1 ] || [ -w $1 ]; then /usr/bin/vim $@;
+#                else
+#                        echo -n "File is readonly. Edit as root? (Y/n): "
+#                        read -n 1 yn; echo;
+#                        if [ "$yn" = 'n' ] || [ "$yn" = 'N' ];
+#                            then /usr/bin/vim $*;
+#                            else su -c "/usr/bin/vim $*";
+#                        fi
+#                fi
+#            }
+
+# Internet shortcuts ####################################
 
 google() {
     search=""
