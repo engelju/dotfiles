@@ -1,11 +1,10 @@
 [user]
     name = Julie Engel
-    email = jue@metanet.ch
+    email = julie.engel@mail.com
 [credential]
     helper = osxkeychain
 [core]
     editor = vim
-    excludesfile = /Users/julieengel/.gitignore_global
     quotepath = false
     autocrlf = input
 [status]
@@ -14,23 +13,12 @@
     default = simple
 [http]
     postBuffer = 524288000
-[merge]
-	tool = difffork
-[mergetool]
-    prompt = false
-[mergetool "difffork"]
-    trustExitCode = true
-    cmd = `/usr/local/bin/difffork $LOCAL $REMOTE $BASE $MERGED`
 [diff]
 	submodule = log
-    tool = difffork
     compactionHeuristic = true
 	algorithm = histogram
 [difftool]
     prompt = false
-[difftool "difffork"]
-    trustExitCode = true
-    cmd = `/usr/local/bin/difffork $LOCAL $REMOTE`
 [pager]
     diff = diff-so-fancy | less --tabs=4 -R
     show = diff-so-fancy | less --tabs=4 -R
@@ -49,8 +37,6 @@
     oldHighlight = red 52
     newNormal = green
     newHighlight = green 22
-[commit]
-    template = /Users/julieengel/.stCommitMsg
 [alias]
     # [all branches] simple commit overview: lists short sha's and branch names (no files/changes)
     ll = log --decorate --oneline --abbrev-commit --all
