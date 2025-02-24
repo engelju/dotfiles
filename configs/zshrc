@@ -1,0 +1,588 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="juanghurtado"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+zstyle ':omz:update' frequency 30
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+plugins=(aliases autoenv brew colored-man-pages colorize command-not-found copypath copyfile cp extract git screen vi-mode brew macos battery themes)
+
+source $ZSH/oh-my-zsh.sh
+
+# --- User configuration ----
+
+## Environment vars
+
+export MANPATH="/usr/local/man:$MANPATH"
+export LANG=en_US.UTF-8
+
+export HOMEBREW_NO_ENV_HINTS=1
+
+# Compilation flags
+export ARCHFLAGS="-arch $(uname -m)"
+
+# Set default editors
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+export VISUAL="/opt/homebrew/bin/subl"
+
+# Use colors for 'ls'
+export CLICOLOR=1
+
+# Specify which 'ls' colors to use
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+export LS_COLORS="$(vivid generate solarized-light)"
+export KUBECOLOR_PRESET="dark"
+
+## Locations
+
+tmpDir=$HOME/tmp
+workspaceDir=$HOME/workspace
+
+## Aliases
+
+alias vi="nvim"
+alias e="nvim"
+alias n="nvim"
+alias nvi="nvim"
+alias s='$VISUAL'
+
+# alias tmp="cd $tmpDir && ls -al"
+# alias w="cd $workspaceDir && ls -al"
+
+alias g="git"
+alias gs="git status"
+alias gd="git diff"
+alias ga="git add"
+
+#alias k='kubectl'
+alias k='kubecolor'
+
+# use more modern tools
+alias ls='lsd'
+alias l.='ls -ld .[^.]*'
+alias tree='lsd --tree'
+alias bat='bat --theme=OneHalfDark' # https://github.com/sharkdp/bat
+alias cat='bat --paging=never --style=plain' # use bat in non-interactive mode and with no line numbers
+alias find='fd'
+alias grep='ag -i'
+alias rgrep='rg -i'
+
+alias z='zellij'
+alias youtube-dl="yt-dlp"
+
+# ------
+# Approve a specific element from an unidentified developer via the system-wide assessment rule database.
+alias approve='spctl --add --label "Approved"'
+# Remove quarantine on a specific element.
+alias unquarantine='xattr -r -d com.apple.quarantine'
+
+## Functions
+
+# Most of these are taken from https://github.com/Adam13531/AdamsApple/shell/zsh
+
+function ensureInPath() {
+    if [[ ":$PATH:" != *":$1:"* ]]; then
+        export PATH="$PATH:$1"
+    fi
+}
+ensureInPath "$HOME/bin/flutter/bin"
+ensureInPath "$HOME/.gem/bin"
+ensureInPath "$HOME/.krew/bin"
+ensureInPath "$HOME/Workspace/sbb/kafka-in-action/kafka_2.13-2.7.1/bin"
+
+function cmkdir() {
+    mkdir $1 && cd $1
+}
+
+function setPromptColor() {
+    autoload -U colors && colors
+
+    # Prompt with a regular text color:
+    PS1="🍎 %{%F{69}%}%2~%{$reset_color%}%{$fg[cyan]%}>%{$reset_color%}"
+}
+
+colorizeLocation=$HOME/bin/colorize.py
+function colorize() {
+    python3 $colorizeLocation "$@"
+}
+
+# This is just a fallback if "colorize.py" doesn't exist.
+#
+# First arg: foreground color
+# Second arg: background color
+# Third arg: text to write (no need for newline)
+#
+# Colors:
+# 0=black, 1=red, 2=green, 3=yellow, 4=blue, 5=pink, 6=cyan, 7=white
+#
+# e.g. colorizeSimple 5 3 "this \n is \n very \n noisy \n text"
+function colorizeSimple() {
+    printf "\033[3${1};4${2}m${3}\033[0m\n"
+}
+
+# Make sure colorize exists.
+if [[ ! -f $colorizeLocation ]]; then
+    colorizeSimple 1 0 "You do not have colorize.py (or the path you have in your bash_profile is wrong)."
+    colorizeSimple 1 0 "Type 'editbash' and fix it by setting colorizeLocation correctly."
+fi
+
+function vizsh() {
+    colorize "^gEditing ~/.zshrc"
+    vi ~/.zshrc
+}
+
+function reload() {
+    colorize "Reloading ^g~/.zshrc"
+    source ~/.zshrc
+}
+
+function utc() {
+    colorize "LOCAL: ^y$(date)"
+    colorize "UTC  : ^g$(date -u)"
+}
+
+function lsg() {
+    git ls-files
+}
+
+function gitLastCommitDiff() {
+    colorize "^gDiffing last commit"
+    git diff HEAD^ HEAD
+}
+
+function gitLastCommitStatus() {
+    colorize "^gShowing status of last commit"
+    git log --name-status HEAD^..HEAD
+}
+
+function gitRevert() {
+    colorize "Usage: git revert ^gCOMMIT_HASH ^=(look at ^ggit log^= for the hash)"
+}
+
+function ff() {
+    if [[ "$1" == "" ]]; then
+        colorize "^rUsage: ff <file to find>"
+        colorize "Does a case-sensitive recursive search for <file to find>."
+        return
+    fi
+
+    fd --case-sensitive "$1"
+}
+
+function ffi() {
+    if [[ "$1" == "" ]]; then
+        colorize "^rUsage: ffi <file to find>"
+        colorize "Does a case-insensitive recursive search for <file to find>."
+
+        return
+    fi
+
+    fd "$1"
+}
+
+function ffd() {
+    if [[ "$1" == "" ]]; then
+        colorize "^rUsage: fd <directory name>"
+        colorize "This function finds directories recursively."
+        return
+    fi
+
+    colorize "Searching for the directory ^g$1 ^w(case-insensitive)"
+
+    fd --type directory "$1"
+}
+
+function fftype() {
+    if [[ "$1" == "" ]]; then
+        colorize "^rUsage: fftype <file type to find>, e.g. fftype py"
+        return
+    fi
+
+    fd ".*\.$1"
+}
+
+function fs() {
+    if [[ "$1" == "" ]]; then
+        # Arg1: the string to search for. The user can choose to provide quotes if they want.
+        # Arg2: the file types to include in the search.
+        #
+        # E.g.
+        # fs "string with spaces"
+        # fs foo *.txt
+        colorize "^rUsage: fs <string to find in files> [files to match]"
+        colorize "Does a case-sensitive recursive search for <string> in files."
+        return
+    fi
+
+    fsCommon "$1" "" "$2"
+}
+
+function fsi() {
+    if [[ "$1" == "" ]]; then
+        colorize "^rUsage: fsi <string to find in files> [files to match]"
+        colorize "Does a case-insensitive recursive search for <string> in files."
+        return
+    fi
+
+    fsCommon "$1" -i "$2"
+}
+
+function fsCommon() {
+    local searchString=$1
+    local addlArgs=$2
+    local include=$3
+
+    if [[ "$searchString" == "" ]]; then
+        colorize "^rYou should not call this function directly."
+        return
+    fi
+
+    local addlArgsStr=
+    if [[ -n $addlArgs ]]; then
+        addlArgsStr="^w(additional args: ^g$addlArgs^w)"
+    fi
+
+    if [[ -n "$include" ]]; then
+        colorize "Searching for ^g$searchString^w in files matching ^g$include $addlArgsStr"
+        if [[ -f $include || -d $include ]]; then
+            colorize "^yWarning: ^r\"$include\"^y exists in the current directory, which likely means you passed something like *.txt to this function, and bash automatically converted it into an existing path. To fix this, surround the argument in double quotes."
+        fi
+        rg $addlArgs -a -r -n "$searchString" ./$include
+    else
+        colorize "Searching for the string ^g$searchString^w in files $addlArgsStr"
+        rg $addlArgs -a -r -n "$searchString" ./
+    fi
+}
+
+function getwd() {
+    pwd | tr -d '\n' | pbcopy
+    colorize "^wCopied ^g${PWD} ^wto the clipboard"
+}
+
+function cdo() {
+    if [[ "$1" == "" ]]; then
+        colorize "^rUsage: cdo <path>"
+        colorize "This does a 'cd' on <path> if it's a directory, but when it's a file, it will do a 'cd' on the file's parent path."
+        return
+    fi
+
+    if [[ -d "$1" ]]; then
+        cd "$1"
+    else
+        local directory=`dirname "$1"`
+        colorize "Switching into ^g$directory"
+        cd "$directory"
+    fi
+}
+
+ccdLocation=$HOME/bin/ccd.py
+function ccd() {
+    # This can't be a local variable or else the error code is always 0
+    output=$(python3 $ccdLocation "$@")
+    local errcode=$?
+    if [ $errcode -eq 0 ]; then
+        colorize "→ ^g$output"
+        cd $output
+        #title
+    else
+        colorize "^rFailed: ^=$output"
+    fi
+}
+
+function home() {
+    cd ~
+    ccd "$@"
+}
+function desktop() {
+    cd ~/Desktop
+    ccd "$@"
+}
+function temp() {
+    cd "$tmpDir"
+    ccd "$@"
+}
+function tmp() {
+    cd "$tmpDir"
+    ccd "$@"
+}
+function w() {
+    cd $workspaceDir
+    ccd "$@"
+}
+
+function parse_git_branch() {
+  git branch --show-current 2>/dev/null|sed 's/^/ (/;s/$/)/'
+}
+function parse_git_left() {
+  git rev-list --left-only --count @{u}... 2>/dev/null|sed '/^0/d;s/^/ -/'
+}
+function parse_git_right() {
+  git rev-list --right-only --count @{u}... 2>/dev/null|sed '/^0/d;s/^/ +/'
+}
+
+# This changes the tab title of iTerm.
+# Usage: title any number of args for the title, e.g. title Code Tab
+# function title() {
+#     local finalTitle=$@
+#     local output=
+#
+#     if [ -z "$1" ]; then
+#         finalTitle=`basename ${PWD}`
+#         output="Setting tab title to the current dir name: ^g$finalTitle"
+#     else
+#         output="Setting tab title to ^g$finalTitle"
+#     fi
+#
+#     colorize $output
+#     #tabColorBasedOnString $finalTitle
+#
+#     echo -n -e "\033]0;$finalTitle\007"
+# }
+#
+# # This is an iTerm-specific feature that will color the tab title based on
+# # a string that you pass in.
+# function tabColorBasedOnString() {
+#     # Put the string through an md5 hash.
+#     local hash=`md5 <<< $1`
+#     hash=`md5 <<< $hash`
+#     hash=`md5 <<< $hash`
+#     hash=`md5 <<< $hash`
+#     hash=`md5 <<< $hash`
+#
+#     # Take four characters for each color component.
+#     local r=${hash:0:4}
+#     local g=${hash:4:4}
+#     local b=${hash:6:4}
+#
+#     # Capitalize the characters since 'bc' requires capitalized hex numberes.
+#     r=$(tr '[a-z]' '[A-Z]' <<< "$r")
+#
+#     # 'bc' is a base conversion program; we go from hex to decimal here.
+#     r=`bc<<<"ibase=16; $r"`
+#
+#     # Do the same process for green and blue.
+#     g=$(tr '[a-z]' '[A-Z]' <<< "$g")
+#     g=`bc<<<"ibase=16; $g"`
+#     b=$(tr '[a-z]' '[A-Z]' <<< "$b")
+#     b=`bc<<<"ibase=16; $b"`
+#
+#     ((r=(r%32)))
+#     ((g=(g%32)))
+#     ((b=(b%32)))
+#
+#     # Make sure the rgb values sum to at least a certain number
+#     local threshold=300
+#     local sum=
+#     ((sum=$r+$g+$b))
+#     ((numCycles=0))
+#     while [[ $sum -lt $threshold ]]; do
+#         # I want the numbers to grow in such a way that the biggest number stays
+#         # proportionally larger to the others, that way you get more vibrant
+#         # colors.
+#         ((r=$r*14/10))
+#         ((g=$g*14/10))
+#         ((b=$b*14/10))
+#
+#         # Some strings will hash to RGB values like [0,7,0] (e.g. "Hi"), which
+#         # means the colors will never exceed the threshold. When this happens,
+#         # we artificially increase the numbers.
+#         ((numCycles=$numCycles+1))
+#         if [[ $numCycles -gt 16 ]]; then
+#             ((r=$r+1))
+#             ((g=$g+1))
+#             ((b=$b+1))
+#         fi
+#
+#         if [[ $r -gt 255 ]]; then r=255; fi
+#         if [[ $g -gt 255 ]]; then g=255; fi
+#         if [[ $b -gt 255 ]]; then b=255; fi
+#
+#         ((sum=$r+$g+$b))
+#     done
+#     tabColor $r $g $b
+# }
+#
+# function tabColor() {
+#     if [[ "$1" == "" ]]; then
+#         colorize "^rUsage: tabColor r g b"
+#         colorize "Alternatively, you can do tabColor [red|blue|green|...|default]"
+#         colorize "This is an iTerm-specific command to set the tab color."
+#         return
+#     fi
+#
+#     local r=$1
+#     local g=$2
+#     local b=$3
+#
+#     if [[ "$2" == "" ]]; then
+#         local colorToLower=$(tr '[A-Z]' '[a-z]' <<< "$r")
+#         # Should really just use an associative array here...
+#         if [[ "$colorToLower" == "red" ]]; then r=255; g=0; b=0;
+#         elif [[ "$colorToLower" == "blue" ]]; then r=0; g=0; b=255;
+#         elif [[ "$colorToLower" == "green" ]]; then r=0; g=255; b=0;
+#         elif [[ "$colorToLower" == "pink" ]]; then r=255; g=0; b=255;
+#         elif [[ "$colorToLower" == "purple" ]]; then r=128; g=64; b=128;
+#         elif [[ "$colorToLower" == "yellow" ]]; then r=255; g=255; b=0;
+#         elif [[ "$colorToLower" == "orange" ]]; then r=255; g=128; b=0;
+#         elif [[ "$colorToLower" == "cyan" ]]; then r=0; g=255; b=255;
+#         elif [[ "$colorToLower" == "white" ]]; then r=255; g=255; b=255;
+#         elif [[ "$colorToLower" == "black" ]]; then r=0; g=0; b=0;
+#         elif [[ "$colorToLower" == "default" ]]; then
+#             # Reset to default
+#             echo -e -n "\033]6;1;bg;*;default\a"
+#             return
+#         else
+#             echo "^rColor not recognized: ^w$colorToLower"
+#             return
+#         fi
+#     fi
+#
+#     echo -e -n "\033]6;1;bg;red;brightness;${r}\a"
+#     echo -e -n "\033]6;1;bg;green;brightness;${g}\a"
+#     echo -e -n "\033]6;1;bg;blue;brightness;${b}\a"
+#
+#     echo "Changing tab color to (^r${r}^w,^g${g}^w,^c${b}^w) (this only works in iTerm)."
+# }
+#
+# # It waits for you to press a single key without even having to hit enter.
+# function testprompt() {
+#     if read -q "choice?Proceed (y/n)? "; then
+#         echo "\nYou chose YES."
+#     else
+#         echo "\nYou chose NO (typed '$choice')"
+#     fi
+# }
+
+function weather() {
+    curl "wttr.in/zurich?F"
+}
+
+# Thu 02/22/2024 - 10:06 AM - detect "git push", and when it fails, switch the
+# user that I'm logged in as. This is because I push as two different identities
+# and hit this issue at least once per week.
+function git() {
+    if [[ $@ == "push" ]]; then
+        gitPushWithAuthSwitch
+    else
+        # Note that "command" is necessary to avoid infinite recursion.
+        command git $@
+    fi
+}
+
+function gitPushWithAuthSwitch() {
+    command git push
+    if [[ $? -eq 0 ]]; then
+        return
+    fi
+
+    colorize "^rPush failed. Switching auth and trying again."
+    gh auth switch
+    command git push
+}
+
+# macOS "find" but excludes directories.
+function findf() {
+    local searchPath=$1
+
+    if [[ "$1" == "" ]]; then
+        searchPath=.
+    fi
+
+    find $searchPath -type f
+}
+
+## Integrations
+
+# iterm2
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# source some readline keybindings
+[[ ! -f ~/.zsh_bindings ]] || source ~/.zsh_bindings
+
+# Powerlevel10k prompt. To change setup, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Brewfile setup
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
+
+eval $(kubebuilder completion zsh)
+
+# Mise integration
+eval "$(/opt/homebrew/bin/mise activate zsh)"
