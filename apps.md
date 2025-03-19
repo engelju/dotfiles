@@ -52,6 +52,7 @@
         - https://www.hammerspoon.org/Spoons/
 - AltTab
 - [DockMate](https://www.macenhance.com/dockmate)
+    - https://github.com/ejbills/DockDoor/
 - Mission Control Plus
 - [Easy Move+Resize](https://github.com/dmarcotte/easy-move-resize)
     - [Flexiglass](https://anjuta.com/flexiglass)
