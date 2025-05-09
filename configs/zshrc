@@ -46,7 +46,7 @@ zstyle ':omz:update' frequency 30
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -82,6 +82,7 @@ source $ZSH/oh-my-zsh.sh
 
 # --- User configuration ----
 
+title $(basename ${PWD})
 ## Environment vars
 
 export MANPATH="/usr/local/man:$MANPATH"
@@ -167,13 +168,6 @@ ensureInPath "$HOME/Workspace/sbb/kafka-in-action/kafka_2.13-2.7.1/bin"
 
 function cmkdir() {
     mkdir $1 && cd $1
-}
-
-function setPromptColor() {
-    autoload -U colors && colors
-
-    # Prompt with a regular text color:
-    PS1="🍎 %{%F{69}%}%2~%{$reset_color%}%{$fg[cyan]%}>%{$reset_color%}"
 }
 
 colorizeLocation=$HOME/bin/colorize.py
@@ -358,7 +352,8 @@ function ccd() {
     if [ $errcode -eq 0 ]; then
         colorize "→ ^g$output"
         cd $output
-        #title
+        # title $output
+        title $(basename ${PWD})
     else
         colorize "^rFailed: ^=$output"
     fi
@@ -397,23 +392,24 @@ function parse_git_right() {
 
 # This changes the tab title of iTerm.
 # Usage: title any number of args for the title, e.g. title Code Tab
-# function title() {
-#     local finalTitle=$@
-#     local output=
-#
-#     if [ -z "$1" ]; then
-#         finalTitle=`basename ${PWD}`
-#         output="Setting tab title to the current dir name: ^g$finalTitle"
-#     else
-#         output="Setting tab title to ^g$finalTitle"
-#     fi
-#
-#     colorize $output
-#     #tabColorBasedOnString $finalTitle
-#
-#     echo -n -e "\033]0;$finalTitle\007"
-# }
-#
+function title() {
+    local finalTitle=$@
+    local output=
+
+    if [ -z "$1" ]; then
+        finalTitle=`basename ${PWD}`
+        output="Setting tab title to the current dir name: ^g$finalTitle"
+    else
+        output="Setting tab title to ^g$finalTitle"
+    fi
+
+    colorize $output
+    #tabColorBasedOnString $finalTitle
+
+    #echo -ne "\033]0;$finalTitle\007"
+    echo -ne "\033]0;"$finalTitle"\007"
+}
+
 # # This is an iTerm-specific feature that will color the tab title based on
 # # a string that you pass in.
 # function tabColorBasedOnString() {
@@ -476,48 +472,48 @@ function parse_git_right() {
 #     done
 #     tabColor $r $g $b
 # }
-#
-# function tabColor() {
-#     if [[ "$1" == "" ]]; then
-#         colorize "^rUsage: tabColor r g b"
-#         colorize "Alternatively, you can do tabColor [red|blue|green|...|default]"
-#         colorize "This is an iTerm-specific command to set the tab color."
-#         return
-#     fi
-#
-#     local r=$1
-#     local g=$2
-#     local b=$3
-#
-#     if [[ "$2" == "" ]]; then
-#         local colorToLower=$(tr '[A-Z]' '[a-z]' <<< "$r")
-#         # Should really just use an associative array here...
-#         if [[ "$colorToLower" == "red" ]]; then r=255; g=0; b=0;
-#         elif [[ "$colorToLower" == "blue" ]]; then r=0; g=0; b=255;
-#         elif [[ "$colorToLower" == "green" ]]; then r=0; g=255; b=0;
-#         elif [[ "$colorToLower" == "pink" ]]; then r=255; g=0; b=255;
-#         elif [[ "$colorToLower" == "purple" ]]; then r=128; g=64; b=128;
-#         elif [[ "$colorToLower" == "yellow" ]]; then r=255; g=255; b=0;
-#         elif [[ "$colorToLower" == "orange" ]]; then r=255; g=128; b=0;
-#         elif [[ "$colorToLower" == "cyan" ]]; then r=0; g=255; b=255;
-#         elif [[ "$colorToLower" == "white" ]]; then r=255; g=255; b=255;
-#         elif [[ "$colorToLower" == "black" ]]; then r=0; g=0; b=0;
-#         elif [[ "$colorToLower" == "default" ]]; then
-#             # Reset to default
-#             echo -e -n "\033]6;1;bg;*;default\a"
-#             return
-#         else
-#             echo "^rColor not recognized: ^w$colorToLower"
-#             return
-#         fi
-#     fi
-#
-#     echo -e -n "\033]6;1;bg;red;brightness;${r}\a"
-#     echo -e -n "\033]6;1;bg;green;brightness;${g}\a"
-#     echo -e -n "\033]6;1;bg;blue;brightness;${b}\a"
-#
-#     echo "Changing tab color to (^r${r}^w,^g${g}^w,^c${b}^w) (this only works in iTerm)."
-# }
+
+function tabColor() {
+    if [[ "$1" == "" ]]; then
+        colorize "^rUsage: tabColor r g b"
+        colorize "Alternatively, you can do tabColor [red|blue|green|...|default]"
+        colorize "This is an iTerm-specific command to set the tab color."
+        return
+    fi
+
+    local r=$1
+    local g=$2
+    local b=$3
+
+    if [[ "$2" == "" ]]; then
+        local colorToLower=$(tr '[A-Z]' '[a-z]' <<< "$r")
+        # Should really just use an associative array here...
+        if [[ "$colorToLower" == "red" ]]; then r=255; g=0; b=0;
+        elif [[ "$colorToLower" == "blue" ]]; then r=0; g=0; b=255;
+        elif [[ "$colorToLower" == "green" ]]; then r=0; g=255; b=0;
+        elif [[ "$colorToLower" == "pink" ]]; then r=255; g=0; b=255;
+        elif [[ "$colorToLower" == "purple" ]]; then r=128; g=64; b=128;
+        elif [[ "$colorToLower" == "yellow" ]]; then r=255; g=255; b=0;
+        elif [[ "$colorToLower" == "orange" ]]; then r=255; g=128; b=0;
+        elif [[ "$colorToLower" == "cyan" ]]; then r=0; g=255; b=255;
+        elif [[ "$colorToLower" == "white" ]]; then r=255; g=255; b=255;
+        elif [[ "$colorToLower" == "black" ]]; then r=0; g=0; b=0;
+        elif [[ "$colorToLower" == "default" ]]; then
+            # Reset to default
+            echo -e -n "\033]6;1;bg;*;default\a"
+            return
+        else
+            echo "Color not recognized: $colorToLower"
+            return
+        fi
+    fi
+
+    echo -e -n "\033]6;1;bg;red;brightness;${r}\a"
+    echo -e -n "\033]6;1;bg;green;brightness;${g}\a"
+    echo -e -n "\033]6;1;bg;blue;brightness;${b}\a"
+
+    echo "Changing tab color to (^r${r}^w,^g${g}^w,^c${b}^w) (this only works in iTerm)."
+}
 #
 # # It waits for you to press a single key without even having to hit enter.
 # function testprompt() {
