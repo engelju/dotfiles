@@ -242,7 +242,7 @@ function gitLastCommitDiff() {
 
 function gitLastCommitStatus() {
     colorize "^gShowing status of last commit"
-    git log --name-status HEAD^..HEAD
+    git --no-pager log --name-status HEAD^..HEAD
 }
 
 function gitRevert() {
