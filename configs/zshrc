@@ -90,10 +90,8 @@ unsetopt share_history
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
 
-export HOMEBREW_NO_ENV_HINTS=1
-
-# Compilation flags
 export ARCHFLAGS="-arch $(uname -m)"
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Set default editors
 if [[ -n $SSH_CONNECTION ]]; then
@@ -101,20 +99,34 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-export VISUAL="/opt/homebrew/bin/subl"
+# export VISUAL="/opt/homebrew/bin/subl"
 
 # Use colors for 'ls'
 export CLICOLOR=1
 
 # Specify which 'ls' colors to use
 #export LSCOLORS=ExFxBxDxCxegedabagacad
-export LS_COLORS="$(vivid generate solarized-light)"
-export KUBECOLOR_PRESET="dark"
+
+# https://stackoverflow.com/questions/25207077/how-to-detect-if-os-x-is-in-dark-mode
+# function macos_is_dark() { test "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" }
+
+# if [[ macos_is_dark ]]; then
+#     export LS_COLORS="$(vivid generate solarized-dark)"
+#     export KUBECOLOR_PRESET="dark"
+#     alias k='kubecolor'
+#     # echo "dark"
+# else
+#     export LS_COLORS="$(vivid generate solarized-light)"
+#     export KUBECOLOR_LIGHT_BACKGROUND=true
+#     export KUBECOLOR_PRESET="light"
+#     alias k='kubecolor "$@" --light-background'
+#     # alias k='f(){ echo before "$@" after;  unset -f f; }; f'
+# fi
 
 ## Locations
 
 tmpDir=$HOME/tmp
-workspaceDir=$HOME/workspace
+workspaceDir=$HOME/Workspace
 
 ## Aliases
 
