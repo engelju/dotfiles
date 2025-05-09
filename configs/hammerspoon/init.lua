@@ -136,3 +136,41 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "Right", moveWindowRightWithPadding)
 -- for when left and right are not remapped
 hs.hotkey.bind({ "ctrl", "cmd" }, "H", moveWindowLeftWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "L", moveWindowRightWithPadding)
+
+
+-- ** add arrow key movement to browsers
+
+-- Define apps considered browsers
+local browsers = {
+    ["Firefox"] = true,
+    ["Google Chrome"] = true,
+    ["Brave Browser"] = true,
+    ["Safari"] = true
+}
+
+-- Map keys to directions and scroll values
+local keyActions = {
+    h = {arrow = "left", scroll = {-20, 0}},
+    j = {arrow = "down", scroll = {0, -50}},
+    k = {arrow = "up", scroll = {0, 50}},
+    l = {arrow = "right", scroll = {20, 0}}
+}
+
+-- Modifier keys
+local mods = {"cmd", "shift"}
+
+-- Bind keys
+for key, action in pairs(keyActions) do
+    hs.hotkey.bind(mods, key, function()
+        local app = hs.application.frontmostApplication()
+        local appName = app and app:name() or ""
+
+        if browsers[appName] then
+            -- Scroll instead of arrow key
+            hs.eventtap.scrollWheel(action.scroll, {}, "pixel")
+        else
+            -- Send arrow key
+            hs.eventtap.keyStroke({}, action.arrow)
+        end
+    end)
+end
