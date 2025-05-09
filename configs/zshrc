@@ -182,10 +182,9 @@ function ensureInPath() {
         export PATH="$PATH:$1"
     fi
 }
-ensureInPath "$HOME/bin/flutter/bin"
-ensureInPath "$HOME/.gem/bin"
-ensureInPath "$HOME/.krew/bin"
-ensureInPath "$HOME/Workspace/sbb/kafka-in-action/kafka_2.13-2.7.1/bin"
+
+ensureInPath "$HOME/bin/kafka_2.13-3.9.0/bin"
+ensureInPath "${KREW_ROOT:-$HOME/.krew}/bin"
 
 function cmkdir() {
     mkdir $1 && cd $1
