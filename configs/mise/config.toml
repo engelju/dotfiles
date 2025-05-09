@@ -8,3 +8,6 @@ python = "latest"
 ruby = "latest"
 rust = "latest"
 yarn = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = []
