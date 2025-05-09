@@ -1,6 +1,6 @@
 [tools]
 go = "latest"
-java = "latest"
+java = "21"
 lua = "latest"
 node = "20"
 python = "latest"
