@@ -27,7 +27,7 @@ local function enableShortcuts()
             hs.application.launchOrFocus(shortcut.app)
         end)
     end
-    -- hs.alert.show("Shortcuts enabled")
+    hs.alert.show("Shortcuts enabled")
 end
 
 -- Function to disable shortcuts
@@ -38,7 +38,7 @@ local function disableShortcuts()
             hotkeys[key] = nil
         end
     end
-    -- hs.alert.show("Shortcuts disabled")
+    hs.alert.show("Shortcuts disabled")
 end
 
 -- Function to check if the frontmost app is an IDE
@@ -174,3 +174,58 @@ for key, action in pairs(keyActions) do
         end
     end)
 end
+
+-- === Display spotify song ===
+
+-- Function to get current Spotify track info
+function getSpotifyTrack()
+    local script = [[
+        tell application "Spotify"
+            if it is running and player state is playing then
+                set trackName to name of current track
+                set artistName to artist of current track
+                return artistName & " - " & trackName
+            else
+                return "Not playing"
+            end if
+        end tell
+    ]]
+    local ok, result = hs.osascript.applescript(script)
+    return result
+end
+
+-- Create a global variable for the text object
+local spotifyTextDisplay = nil
+
+-- Function to show/update the text
+function updateSpotifyText()
+    local trackInfo = getSpotifyTrack()
+
+    if not spotifyTextDisplay then
+        local screen = hs.screen.primaryScreen()
+        local screenFrame = screen:frame()  -- excludes dock & menu bar
+        local textX = screenFrame.x + 20
+        local textY = screenFrame.y + screenFrame.h + 25
+
+        spotifyTextDisplay = hs.drawing.text(
+            hs.geometry.rect(textX, textY, 600, 30),
+            trackInfo
+        )
+
+        spotifyTextDisplay:setTextFont("Helvetica Neue")
+        spotifyTextDisplay:setTextSize(16)
+        spotifyTextDisplay:setTextColor({black = 1})
+        spotifyTextDisplay:setBehaviorByLabels({"canJoinAllSpaces", "stationary"})
+        spotifyTextDisplay:setLevel(hs.drawing.windowLevels.status)
+        spotifyTextDisplay:show()
+    else
+        spotifyTextDisplay:setText(trackInfo)
+    end
+end
+
+-- Timer to update the track info every few seconds
+timerVar = hs.timer.doEvery(5, updateSpotifyText)
+
+-- Initial update on startup
+updateSpotifyText()
+
