@@ -136,33 +136,40 @@ alias n="nvim"
 alias nvi="nvim"
 alias s='$VISUAL'
 
-# alias tmp="cd $tmpDir && ls -al"
-# alias w="cd $workspaceDir && ls -al"
+alias jb="idea"
 
 alias g="git"
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"
 
-#alias k='kubectl'
-alias k='kubecolor'
+alias k='kubectl'
+#alias k='kubecolor'
 
-# use more modern tools
+# use modern tools
 alias ls='lsd'
 alias l.='ls -ld .[^.]*'
 alias tree='lsd --tree'
-alias bat='bat --theme=OneHalfDark' # https://github.com/sharkdp/bat
+alias bat='bat --theme=ansi' # https://github.com/sharkdp/bat
 alias cat='bat --paging=never --style=plain' # use bat in non-interactive mode and with no line numbers
 alias find='fd'
 alias grep='ag -i'
 alias rgrep='rg -i'
+alias df='duf'
+alias du='dust'
+alias ping='gping'
 
 alias z='zellij'
 alias youtube-dl="yt-dlp"
 
+# alias tmp="cd $tmpDir && ls -al"
+# alias w="cd $workspaceDir && ls -al"
+
 # ------
+
 # Approve a specific element from an unidentified developer via the system-wide assessment rule database.
 alias approve='spctl --add --label "Approved"'
+
 # Remove quarantine on a specific element.
 alias unquarantine='xattr -r -d com.apple.quarantine'
 
