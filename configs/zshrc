@@ -557,7 +557,8 @@ function title() {
     #tabColorBasedOnString $finalTitle
 
     #echo -ne "\033]0;$finalTitle\007"
-    echo -ne "\033]0;"$finalTitle"\007"
+    #echo -ne "\033]0;"$finalTitle"\007"
+    echo -ne "\e]2;"$finalTitle"\a"
 }
 
 # # This is an iTerm-specific feature that will color the tab title based on
@@ -675,7 +676,7 @@ function tabColor() {
 # }
 
 function weather() {
-    curl "wttr.in/zurich?F"
+    curl "wttr.in/Zurich,Switzerland"
 }
 
 # Thu 02/22/2024 - 10:06 AM - detect "git push", and when it fails, switch the
