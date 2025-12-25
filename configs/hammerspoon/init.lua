@@ -81,15 +81,12 @@ function maximizeWithPadding()
     if win then
         local screen = win:screen()
         local screenFrame = screen:frame()
-
-        -- Calculate the new window frame with padding
         local newFrame = {
             x = screenFrame.x + padding,
             y = screenFrame.y + padding,
             w = screenFrame.w - (2 * padding),
             h = screenFrame.h - (2 * padding),
         }
-
         win:setFrame(newFrame)
     end
 end
@@ -100,14 +97,12 @@ function moveWindowLeftWithPadding()
     if win then
         local screen = win:screen()
         local screenFrame = screen:frame()
-
         local newFrame = {
             x = screenFrame.x + padding,
             y = screenFrame.y + padding,
             w = (screenFrame.w / 2) - padding,
             h = screenFrame.h - (2 * padding),
         }
-
         win:setFrame(newFrame)
     end
 end
@@ -118,14 +113,12 @@ function moveWindowRightWithPadding()
     if win then
         local screen = win:screen()
         local screenFrame = screen:frame()
-
         local newFrame = {
             x = screenFrame.x + (screenFrame.w / 2) + padding,
             y = screenFrame.y + padding,
             w = (screenFrame.w / 2) - padding,
             h = screenFrame.h - (2 * padding),
         }
-
         win:setFrame(newFrame)
     end
 end
@@ -144,7 +137,6 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "L", moveWindowRightWithPadding)
 local browsers = {
     ["Firefox"] = true,
     ["Google Chrome"] = true,
-    ["Brave Browser"] = true,
     ["Safari"] = true
 }
 
@@ -164,7 +156,6 @@ for key, action in pairs(keyActions) do
     hs.hotkey.bind(mods, key, function()
         local app = hs.application.frontmostApplication()
         local appName = app and app:name() or ""
-
         if browsers[appName] then
             -- Scroll instead of arrow key
             hs.eventtap.scrollWheel(action.scroll, {}, "pixel")
