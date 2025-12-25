@@ -160,6 +160,9 @@ export CLICOLOR=1
 tmpDir=$HOME/tmp
 workspaceDir=$HOME/Workspace
 
+intellijScratchDir="$HOME/Library/Application Support/JetBrains/IntelliJIdea2025.2/scratches"
+gitHooksDir="$HOME/Library/Application Support/ggshield/git-hooks"
+
 ## Aliases
 
 alias vi="$EDITOR"
@@ -505,9 +508,26 @@ function tmp() {
     cd "$tmpDir"
     ccd "$@"
 }
+function scratch() {
+    cd "$intellijScratchDir"
+    ccd "$@"
+}
+function hooks() {
+    cd "$gitHooksDir"
+    ccd "$@"
+}
 function w() {
     cd $workspaceDir
     ccd "$@"
+}
+function kafka() {
+    ccd "$workspaceDir/kafka/"
+}
+function argo() {
+    ccd "$workspaceDir/kafka/argocd/"
+}
+function userChrome() {
+    cd "$HOME/Library/Application Support/Firefox/Profiles/p7o8r4k0.default-release/chrome"
 }
 
 function parse_git_branch() {
@@ -690,6 +710,10 @@ function findf() {
     fi
 
     find $searchPath -type f
+}
+
+function setJiraTicket() {
+    export JIRA_TICKET=$1
 }
 
 ## Integrations
