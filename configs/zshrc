@@ -76,14 +76,43 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(aliases autoenv brew colored-man-pages colorize command-not-found copypath copyfile cp extract git screen vi-mode brew macos battery themes)
+plugins=(
+    #aliases
+    autoenv
+    brew
+    colored-man-pages
+    colorize
+    command-not-found
+    copypath
+    copyfile
+    cp
+    extract
+    #git
+    git-auto-fetch
+    mise
+    kubectl
+    helm
+    operator-sdk
+    screen
+    tmux
+    vi-mode
+    brew
+    macos
+    themes
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # --- User configuration ----
 
 title $(basename ${PWD})
-unsetopt share_history
+# unsetopt to not share history per tabs
+#unsetopt share_history
+
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_NO_STORE
 
 ## Environment vars
 
