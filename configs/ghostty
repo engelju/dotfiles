@@ -1,0 +1,109 @@
+# This is the configuration file for Ghostty.
+#
+#   /Users/julie.engel/Library/Application Support/com.mitchellh.ghostty/config
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+# Config syntax crash course
+# ==========================
+# The config file consists of simple key-value pairs, separated by equals signs.
+# Spacing around the equals sign does not matter.
+# Empty values are used to reset config keys to default (ie. key = ).
+#
+# window-padding-x = 2
+# key =
+
+auto-update = download
+auto-update-channel = tip
+
+theme = light:Builtin Solarized Light,dark:Builtin Solarized Dark
+
+# fonts
+font-family = "SF Mono"
+font-style = "Regular"
+font-size = 16
+font-thicken = false
+font-thicken-strength = 0
+
+# mouse
+mouse-scroll-multiplier = 2
+
+# clipboard
+copy-on-select = clipboard
+
+# window / ui settings
+background-opacity = 1
+window-decoration = auto
+window-theme = system
+window-save-state = always
+resize-overlay = never
+
+# macos-titlebar-style = native
+macos-titlebar-style = tabs
+macos-window-shadow = false
+
+# cursor
+cursor-style = bar
+cursor-style-blink = false
+
+# shell
+shell-integration = zsh
+# shell-integration-features = true
+shell-integration-features = no-cursor, no-title
+
+# quick terminal
+initial-window = false
+quick-terminal-screen = mouse
+quick-terminal-animation-duration = 0
+quick-terminal-position = center
+# quick-terminal-size = 50%,50%
+# quick-terminal-size = 800px, 50%
+
+### --- Keybindings
+
+keybind = cmd+s>r=reload_config
+keybind = cmd+shift+r=prompt_surface_title
+keybind = cmd+p=toggle_command_palette
+
+# global quick terminal
+# keybind = global:cmd+shift+f=toggle_visibility
+keybind = global:cmd+;=toggle_visibility
+keybind = global:cmd+'=toggle_quick_terminal
+
+# Word navigation
+keybind = opt+backspace=text:\x17       # CTRL-W: delete word backwards
+# keybind = opt+arrow_left=text:\x1bb     # ALT-B:  move one word backwards
+# keybind = opt+arrow_right=text:\x1bf    # ALT-F:  move one word forward
+keybind = opt+arrow_right=text:\x1b[1;5C
+keybind = opt+arrow_left=text:\x1b[1;5D
+
+# Line navigation
+keybind = cmd+arrow_left=csi:H
+keybind = cmd+arrow_right=csi:F
+keybind = cmd+backspace=text:\x15
+
+# Split panes
+keybind = cmd+enter=new_split:down
+keybind = cmd+shift+enter=new_split:right
+keybind = cmd+shift+h=new_split:left
+keybind = cmd+shift+j=new_split:down
+keybind = cmd+shift+k=new_split:up
+keybind = cmd+shift+l=new_split:right
+
+# Pane navigation
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:bottom
+keybind = alt+k=goto_split:top
+keybind = alt+l=goto_split:right
+keybind = alt+/=toggle_split_zoom
+
+# Resize panes
+keybind = ctrl+shift+h=resize_split:left,20
+keybind = ctrl+shift+j=resize_split:down,20
+keybind = ctrl+shift+k=resize_split:up,20
+keybind = ctrl+shift+l=resize_split:right,20
+
