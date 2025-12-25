@@ -219,6 +219,10 @@ alias openwith='dooti'
 
 ## Functions
 
+function json2yaml() {
+    yq -P eval -o yaml $1 > $2
+}
+
 # Most of these are taken from https://github.com/Adam13531/AdamsApple/shell/zsh
 
 function ensureInPath() {
@@ -231,7 +235,7 @@ ensureInPath "$HOME/bin/kafka_2.13-3.9.0/bin"
 ensureInPath "${KREW_ROOT:-$HOME/.krew}/bin"
 
 function cmkdir() {
-    mkdir $1 && cd $1
+    mkdir "$1" && cd "$1" || exit;
 }
 
 colorizeLocation=$HOME/bin/colorize.py
@@ -259,9 +263,39 @@ if [[ ! -f $colorizeLocation ]]; then
     colorizeSimple 1 0 "Type 'editbash' and fix it by setting colorizeLocation correctly."
 fi
 
+function TODO() {
+    colorize "^gEditing ~/TODO"
+    $EDITOR ~/TODO.md
+}
+
 function vizsh() {
     colorize "^gEditing ~/.zshrc"
-    vi ~/.zshrc
+    $EDITOR ~/.zshrc
+}
+
+function vitm() {
+    colorize "^gEditing ~/.tmux.conf"
+    $EDITOR ~/.tmux.conf
+}
+
+function vimrc() {
+    colorize "^gEditing ~/.vimrc"
+    $EDITOR ~/.vimrc
+}
+
+function vinvimrc() {
+    colorize "^gEditing ~/.config/nvim/init.lua"
+    $EDITOR ~/.config/nvim/init.lua
+}
+
+function viham() {
+    colorize "^gEditing ~/.config/hammerspoon/init.lua"
+    $EDITOR ~/.config/hammerspoon/init.lua
+}
+
+function vighost() {
+    colorize "^gEditing ghostty config"
+    $EDITOR ~/Library/Application\ Support/com.mitchellh.ghostty/config
 }
 
 function reload() {
@@ -291,6 +325,34 @@ function gitLastCommitStatus() {
 function gitRevert() {
     colorize "Usage: git revert ^gCOMMIT_HASH ^=(look at ^ggit log^= for the hash)"
 }
+
+# creates an archive from a given directory
+
+function mktar() {
+    tar cvf  "${1%%/}.tar"     "${1%%/}/";
+}
+
+function mkgz() {
+    tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
+}
+
+function mkbz() {
+    tar cvjf "${1%%/}.tar.bz2" "${1%%/}/";
+}
+
+# prefix every file in folder with given argument
+function prefix () {
+    for x in * ; do
+    	mv "$x" "$1$x" ;
+    done
+}
+
+# create a .backup file of the given file
+function bu() {
+    cp "$1" "$(basename "$1")"-"$(date +%Y%m%d)".backup ;
+}
+
+# -- Find Functions
 
 function ff() {
     if [[ "$1" == "" ]]; then
@@ -331,7 +393,8 @@ function fftype() {
         return
     fi
 
-    fd ".*\.$1"
+    # fd ".*\.$1"
+    fd -e "$1"
 }
 
 function fs() {
@@ -387,11 +450,13 @@ function fsCommon() {
     fi
 }
 
-function getwd() {
+# getcwd(): copy cwd into clipboard
+function getcwd() {
     pwd | tr -d '\n' | pbcopy
     colorize "^wCopied ^g${PWD} ^wto the clipboard"
 }
 
+# cdo(): cd on path or if file, to parent path
 function cdo() {
     if [[ "$1" == "" ]]; then
         colorize "^rUsage: cdo <path>"
@@ -408,6 +473,7 @@ function cdo() {
     fi
 }
 
+# ccd(): colorize the cd command
 ccdLocation=$HOME/bin/ccd.py
 function ccd() {
     # This can't be a local variable or else the error code is always 0
