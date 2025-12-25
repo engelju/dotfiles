@@ -20,51 +20,56 @@ local shortcuts = {
 -- Table to store hotkey objects
 local hotkeys = {}
 
--- Function to enable shortcuts
+-- Enable shortcuts (idempotent)
 local function enableShortcuts()
-    for _, shortcut in ipairs(shortcuts) do
-        hotkeys[shortcut.key] = hs.hotkey.bind({ "cmd" }, shortcut.key, function()
-            hs.application.launchOrFocus(shortcut.app)
-        end)
-    end
-    hs.alert.show("Shortcuts enabled")
-end
-
--- Function to disable shortcuts
-local function disableShortcuts()
-    for key, hotkey in pairs(hotkeys) do
-        if hotkey then
-            hotkey:delete()
-            hotkeys[key] = nil
+    for _, s in ipairs(shortcuts) do
+        if not hotkeys[s.key] then
+            hotkeys[s.key] = hs.hotkey.bind({ "cmd" }, s.key, function()
+                hs.application.launchOrFocus(s.app)
+            end)
         end
     end
-    hs.alert.show("Shortcuts disabled")
+    -- hs.alert.show("Shortcuts enabled")
 end
 
--- Function to check if the frontmost app is an IDE
+-- Disable shortcuts (idempotent)
+local function disableShortcuts()
+    for key, hk in pairs(hotkeys) do
+        if hk then hk:delete() end
+        hotkeys[key] = nil
+    end
+    -- hs.alert.show("Shortcuts disabled")
+end
+
+-- Decide if the current frontmost app is a JetBrains IDE you want to exclude
 local function isIDEActive()
-    local focusedApp = hs.application.frontmostApplication()
-    local appName = focusedApp and focusedApp:name()
-    return appName == "IntelliJ IDEA" or appName == "GoLand"
+    local app = hs.application.frontmostApplication()
+    local name = app and app:name() or ""
+    -- Match IntelliJ Idea (incl. CE/Ultimate) and GoLand
+    return name:match("^IntelliJ IDEA") ~= nil or name == "GoLand"
+    -- Add more if you like: or name == "WebStorm" or name == "PyCharm"
 end
 
--- Window filter for IntelliJ and GoLand
-local ideFilter = hs.window.filter.new({ "IntelliJ IDEA", "GoLand" })
 
--- Enable or disable shortcuts dynamically
-ideFilter:subscribe(hs.window.filter.windowFocused, function()
-    disableShortcuts()
-end)
-ideFilter:subscribe(hs.window.filter.windowUnfocused, function()
-    enableShortcuts()
-end)
-
--- Initialize shortcuts if not starting in an IDE
-if not isIDEActive() then
-    enableShortcuts()
-else
-    disableShortcuts()
+local function updateShortcuts()
+    if isIDEActive() then
+        disableShortcuts()
+    else
+        enableShortcuts()
+    end
 end
+
+-- Watch for app focus changes and toggle shortcuts
+local appWatcher = hs.application.watcher.new(function(_, event)
+    if event == hs.application.watcher.activated then
+        updateShortcuts()
+    end
+end)
+
+-- appWatcher:start()
+
+-- Initialize based on the current frontmost app
+-- updateShortcuts()
 
 -- Notify on reload
 hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded!" }):send()
