@@ -126,6 +126,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 
 # Set default editors
 if [[ -n $SSH_CONNECTION ]]; then
+  # in a ssh session - use standard vim
   export EDITOR='vim'
 else
   export EDITOR='nvim'
@@ -161,24 +162,30 @@ workspaceDir=$HOME/Workspace
 
 ## Aliases
 
-alias vi="nvim"
-alias e="nvim"
-alias n="nvim"
-alias nvi="nvim"
+alias vi="$EDITOR"
+alias e="$EDITOR"
+alias n="$EDITOR"
+
 alias s='$VISUAL'
 
 alias jb="idea"
 
 alias g="git"
 alias gs="git status"
-alias gd="git diff"
 alias ga="git add"
+alias gd="git diff"
+alias gds="git diff --output-indicator-{old,new,context}=' '"
+alias rebase="git rebase -i HEAD~5"
 
+alias d='docker'
+alias dc='docker compose'
+alias kc='kubecolor'
 alias k='kubectl'
-#alias k='kubecolor'
+alias kneat="kubectl-neat | bat -pl yaml"
 
 # use modern tools
 alias ls='lsd'
+alias ll='eza -l'
 alias l.='ls -ld .[^.]*'
 alias tree='lsd --tree'
 alias bat='bat --theme=ansi' # https://github.com/sharkdp/bat
@@ -189,9 +196,12 @@ alias rgrep='rg -i'
 alias df='duf'
 alias du='dust'
 alias ping='gping'
+alias ijhttp='ijhttp -L VERBOSE'
 
 alias z='zellij'
 alias youtube-dl="yt-dlp"
+
+alias master="git checkout master && git pull"
 
 # alias tmp="cd $tmpDir && ls -al"
 # alias w="cd $workspaceDir && ls -al"
@@ -203,6 +213,9 @@ alias approve='spctl --add --label "Approved"'
 
 # Remove quarantine on a specific element.
 alias unquarantine='xattr -r -d com.apple.quarantine'
+
+# https://github.com/lkubb/dooti
+alias openwith='dooti'
 
 ## Functions
 
