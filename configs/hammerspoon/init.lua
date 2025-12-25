@@ -178,54 +178,85 @@ end
 -- === Display spotify song ===
 
 -- Function to get current Spotify track info
-function getSpotifyTrack()
-    local script = [[
-        tell application "Spotify"
-            if it is running and player state is playing then
-                set trackName to name of current track
-                set artistName to artist of current track
-                return artistName & " - " & trackName
-            else
-                return "Not playing"
-            end if
-        end tell
-    ]]
-    local ok, result = hs.osascript.applescript(script)
-    return result
-end
+-- function getSpotifyTrack()
+--     local script = [[
+--         tell application "Spotify"
+--             if it is running and player state is playing then
+--                 set trackName to name of current track
+--                 set artistName to artist of current track
+--                 return artistName & " - " & trackName
+--             else
+--                 return "Not playing"
+--             end if
+--         end tell
+--     ]]
+--     local ok, result = hs.osascript.applescript(script)
+--     return result
+-- end
 
 -- Create a global variable for the text object
-local spotifyTextDisplay = nil
+-- local spotifyTextDisplay = nil
 
 -- Function to show/update the text
-function updateSpotifyText()
-    local trackInfo = getSpotifyTrack()
-
-    if not spotifyTextDisplay then
-        local screen = hs.screen.primaryScreen()
-        local screenFrame = screen:frame()  -- excludes dock & menu bar
-        local textX = screenFrame.x + 20
-        local textY = screenFrame.y + screenFrame.h + 25
-
-        spotifyTextDisplay = hs.drawing.text(
-            hs.geometry.rect(textX, textY, 600, 30),
-            trackInfo
-        )
-
-        spotifyTextDisplay:setTextFont("Helvetica Neue")
-        spotifyTextDisplay:setTextSize(16)
-        spotifyTextDisplay:setTextColor({black = 1})
-        spotifyTextDisplay:setBehaviorByLabels({"canJoinAllSpaces", "stationary"})
-        spotifyTextDisplay:setLevel(hs.drawing.windowLevels.status)
-        spotifyTextDisplay:show()
-    else
-        spotifyTextDisplay:setText(trackInfo)
-    end
-end
+-- function updateSpotifyText()
+--     local trackInfo = getSpotifyTrack()
+--
+--     if not spotifyTextDisplay then
+--         local screen = hs.screen.primaryScreen()
+--         local screenFrame = screen:frame()  -- excludes dock & menu bar
+--         local textX = screenFrame.x + 20
+--         local textY = screenFrame.y + screenFrame.h + 25
+--
+--         spotifyTextDisplay = hs.drawing.text(
+--             hs.geometry.rect(textX, textY, 600, 30),
+--             trackInfo
+--         )
+--
+--         spotifyTextDisplay:setTextFont("Helvetica Neue")
+--         spotifyTextDisplay:setTextSize(16)
+--         spotifyTextDisplay:setTextColor({white = 1})
+--         spotifyTextDisplay:setBehaviorByLabels({"canJoinAllSpaces", "stationary"})
+--         spotifyTextDisplay:setLevel(hs.drawing.windowLevels.status)
+--         spotifyTextDisplay:show()
+--     else
+--         spotifyTextDisplay:setText(trackInfo)
+--     end
+-- end
 
 -- Timer to update the track info every few seconds
-timerVar = hs.timer.doEvery(5, updateSpotifyText)
+-- timerVar = hs.timer.doEvery(5, updateSpotifyText)
 
 -- Initial update on startup
-updateSpotifyText()
+-- updateSpotifyText()
+
+--- DROPDOWN TERMINAL
+
+-- hs.hotkey.bind({ "ctrl", "shift" }, "a", function()
+--     wez = hs.application.find("WezTerm", true)
+--     if not wez then
+--         hs.application.launchOrFocus("WezTerm")
+--     else
+--         if wez:isFrontmost() then
+--             wez:hide()
+--         else
+--             wez:activate()
+--         end
+--     end
+-- end)
+
+--- MOVE THE MOUSE WITH KEYBOARD
+
+local step = 21
+
+function moveMouse(dx, dy)
+    local pos = hs.mouse.absolutePosition()
+    pos.x = pos.x + dx
+    pos.y = pos.y + dy
+    hs.mouse.absolutePosition(pos)
+end
+
+hs.hotkey.bind({"alt", "ctrl"}, "h", function() moveMouse(-step, 0) end)
+hs.hotkey.bind({"alt", "ctrl"}, "j", function() moveMouse(0, step) end)
+hs.hotkey.bind({"alt", "ctrl"}, "k", function() moveMouse(0, -step) end)
+hs.hotkey.bind({"alt", "ctrl"}, "l", function() moveMouse(step, 0) end)
 
