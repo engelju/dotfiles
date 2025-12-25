@@ -121,7 +121,7 @@ function moveWindowRightWithPadding()
         local newFrame = {
             x = screenFrame.x + (screenFrame.w / 2) + padding,
             y = screenFrame.y + padding,
-            w = (screenFrame.w / 2) - padding,
+            w = (screenFrame.w / 2) - (2 * padding),
             h = screenFrame.h - (2 * padding),
         }
         win:setFrame(newFrame)
@@ -129,8 +129,10 @@ function moveWindowRightWithPadding()
 end
 
 hs.hotkey.bind({ "ctrl", "cmd" }, "F", maximizeWithPadding)
+
 hs.hotkey.bind({ "ctrl", "cmd" }, "Left", moveWindowLeftWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "Right", moveWindowRightWithPadding)
+
 -- for when left and right are not remapped
 hs.hotkey.bind({ "ctrl", "cmd" }, "H", moveWindowLeftWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "L", moveWindowRightWithPadding)
