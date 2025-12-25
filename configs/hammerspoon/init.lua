@@ -137,6 +137,114 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "Right", moveWindowRightWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "H", moveWindowLeftWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "L", moveWindowRightWithPadding)
 
+-- Main center window and left and right windows
+local CENTER_RATIO = 0.5
+
+function moveWindowCenterWithPadding()
+    local win = hs.window.focusedWindow()
+    if win then
+        local screen = win:screen()
+        local screenFrame = screen:frame()
+        local targetWidth = (screenFrame.w * CENTER_RATIO)
+        local newFrame = {
+            x = screenFrame.x + (screenFrame.w - targetWidth) / 2,
+            y = screenFrame.y + padding,
+            w = targetWidth,
+            h = screenFrame.h - (2 * padding),
+        }
+        win:setFrame(newFrame)
+    end
+end
+
+function moveWindowLeftOfCenterWithPadding()
+    local win = hs.window.focusedWindow()
+    if not win then return end
+    local s = win:screen():frame()
+
+    local centerW = s.w * CENTER_RATIO
+    local centerX = s.x + (s.w - centerW) / 2  -- left edge of center window
+
+    local newFrame = {
+        x = s.x + padding,
+        y = s.y + padding,
+        w = (centerX - padding) - (s.x + padding), -- fill up to (center - padding)
+        h = s.h - (2 * padding),
+    }
+    win:setFrame(newFrame)
+end
+
+function moveWindowRightOfCenterWithPadding()
+    local win = hs.window.focusedWindow()
+    if not win then return end
+    local s = win:screen():frame()
+
+    local centerW = s.w * CENTER_RATIO
+    local centerX = s.x + (s.w - centerW) / 2  -- left edge of center window
+    local leftEdge = centerX + centerW + padding
+
+    local newFrame = {
+        x = leftEdge,
+        y = s.y + padding,
+        w = (s.x + s.w - padding) - leftEdge, -- fill from (center+padding) to right edge-padding
+        h = s.h - (2 * padding),
+    }
+    win:setFrame(newFrame)
+end
+
+hs.hotkey.bind({ "ctrl", "cmd" }, "C", moveWindowCenterWithPadding)
+hs.hotkey.bind({ "ctrl", "cmd" }, "A", moveWindowLeftOfCenterWithPadding)
+hs.hotkey.bind({ "ctrl", "cmd" }, "D", moveWindowRightOfCenterWithPadding)
+
+-- Third Splits Window Management
+-- Robust frame apply: move, resize, move (plus rounding)
+local function applyFrame(win, f)
+    f.x = math.floor(f.x + 0.5)
+    f.y = math.floor(f.y + 0.5)
+    f.w = math.floor(f.w + 0.5)
+    f.h = math.floor(f.h + 0.5)
+    win:setTopLeft({ x = f.x, y = f.y })
+    win:setSize({ w = f.w, h = f.h })
+    win:setTopLeft({ x = f.x, y = f.y })
+end
+
+-- Compute exact thirds with equal gutters:
+-- [padding][L][padding][M][padding][R][padding]
+local function thirdRect(s, index) -- index: 0=left, 1=middle, 2=right
+    local totalGutters = 4 * padding
+    local tw = (s.w - totalGutters) / 3
+    local x = s.x + padding + index * (tw + padding)
+    return {
+        x = x,
+        y = s.y + padding,
+        w = tw,
+        h = s.h - (padding + padding_bottom), -- top/bottom paddings
+    }
+end
+
+function moveWindowLeftThirdWithPadding()
+    local win = hs.window.focusedWindow()
+    if not win then return end
+    local s = win:screen():frame()
+    applyFrame(win, thirdRect(s, 0))
+end
+
+function moveWindowMiddleThirdWithPadding()
+    local win = hs.window.focusedWindow()
+    if not win then return end
+    local s = win:screen():frame()
+    applyFrame(win, thirdRect(s, 1))
+end
+
+function moveWindowRightThirdWithPadding()
+    local win = hs.window.focusedWindow()
+    if not win then return end
+    local s = win:screen():frame()
+    applyFrame(win, thirdRect(s, 2))
+end
+
+hs.hotkey.bind({ "ctrl", "cmd" }, "J", moveWindowLeftThirdWithPadding)
+hs.hotkey.bind({ "ctrl", "cmd" }, "V", moveWindowMiddleThirdWithPadding)
+hs.hotkey.bind({ "ctrl", "cmd" }, "K", moveWindowRightThirdWithPadding)
 
 -- ** add arrow key movement to browsers
 
