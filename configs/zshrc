@@ -737,3 +737,7 @@ eval $(kubebuilder completion zsh)
 
 # Mise integration
 eval "$(/opt/homebrew/bin/mise activate zsh)"
+
+eval "$(starship init zsh)"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
