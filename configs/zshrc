@@ -120,6 +120,8 @@ export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
 
 export ARCHFLAGS="-arch $(uname -m)"
+export OPENAI_API_KEY="lolno"
+
 export HOMEBREW_NO_ENV_HINTS=1
 
 # Set default editors
