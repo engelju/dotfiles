@@ -246,6 +246,12 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "J", moveWindowLeftThirdWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "V", moveWindowMiddleThirdWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "K", moveWindowRightThirdWithPadding)
 
+-- move focused window to other screen
+hs.hotkey.bind({"ctrl", "cmd"}, "P", function()
+  local win = hs.window.focusedWindow()
+  win:moveToScreen(win:screen():next())
+end)
+
 -- ** add arrow key movement to browsers
 
 -- Define apps considered browsers
