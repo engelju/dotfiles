@@ -118,6 +118,7 @@ export CLICOLOR=1
 
 tmpDir=$HOME/tmp
 workspaceDir=$HOME/Workspace
+sbbDir=$workspaceDir/sbb
 
 intellijScratchDir="$HOME/Library/Application Support/JetBrains/IntelliJIdea2025.2/scratches"
 gitHooksDir="$HOME/Library/Application Support/ggshield/git-hooks"
@@ -483,11 +484,14 @@ function w() {
     cd $workspaceDir
     ccd "$@"
 }
+function sbb() {
+    ccd $sbbDir
+}
 function kafka() {
-    ccd "$workspaceDir/kafka/"
+    ccd "$sbbDir/KD_KAFKA/"
 }
 function argo() {
-    ccd "$workspaceDir/kafka/argocd/"
+    ccd "$sbbDir/KD_KAFKA/argocd/"
 }
 function userChrome() {
     cd "$HOME/Library/Application Support/Firefox/Profiles/p7o8r4k0.default-release/chrome"
