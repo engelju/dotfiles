@@ -7,72 +7,27 @@ end
 
 hs.hotkey.bind({ "ctrl", "cmd" }, "R", reloadConfig)
 
--- *** Navigation Hotkeys *** ---
-
--- Define shortcuts and their corresponding applications
-local shortcuts = {
-    { key = "1", app = "iTerm" },
-    { key = "2", app = "Firefox" },
-    { key = "3", app = "Sublime Text" },
-    { key = "4", app = "Finder" },
-}
-
--- Table to store hotkey objects
-local hotkeys = {}
-
--- Enable shortcuts (idempotent)
-local function enableShortcuts()
-    for _, s in ipairs(shortcuts) do
-        if not hotkeys[s.key] then
-            hotkeys[s.key] = hs.hotkey.bind({ "cmd" }, s.key, function()
-                hs.application.launchOrFocus(s.app)
-            end)
-        end
-    end
-    -- hs.alert.show("Shortcuts enabled")
-end
-
--- Disable shortcuts (idempotent)
-local function disableShortcuts()
-    for key, hk in pairs(hotkeys) do
-        if hk then hk:delete() end
-        hotkeys[key] = nil
-    end
-    -- hs.alert.show("Shortcuts disabled")
-end
-
--- Decide if the current frontmost app is a JetBrains IDE you want to exclude
-local function isIDEActive()
-    local app = hs.application.frontmostApplication()
-    local name = app and app:name() or ""
-    -- Match IntelliJ Idea (incl. CE/Ultimate) and GoLand
-    return name:match("^IntelliJ IDEA") ~= nil or name == "GoLand"
-    -- Add more if you like: or name == "WebStorm" or name == "PyCharm"
-end
-
-
-local function updateShortcuts()
-    if isIDEActive() then
-        disableShortcuts()
-    else
-        enableShortcuts()
-    end
-end
-
--- Watch for app focus changes and toggle shortcuts
-local appWatcher = hs.application.watcher.new(function(_, event)
-    if event == hs.application.watcher.activated then
-        updateShortcuts()
-    end
-end)
-
--- appWatcher:start()
-
--- Initialize based on the current frontmost app
--- updateShortcuts()
-
 -- Notify on reload
 hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded!" }):send()
+
+-- *** Navigation Hotkeys *** ---
+
+hs.hotkey.bind({"cmd", "shift"}, "1",
+    function() hs.application.launchOrFocus("Ghostty")
+end)
+
+hs.hotkey.bind({"cmd", "shift"}, "2",
+    function() hs.application.launchOrFocus("Firefox")
+end)
+
+hs.hotkey.bind({"cmd", "shift"}, "3",
+    function() hs.application.launchOrFocus("Microsoft Teams")
+end)
+
+hs.hotkey.bind({"cmd", "shift"}, "4",
+    function() hs.application.launchOrFocus("Microsoft OneNote")
+end)
+
 
 -- *** Window Management *** ---
 
