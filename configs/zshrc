@@ -149,7 +149,6 @@ alias kneat="kubectl-neat | bat -pl yaml"
 alias ls='lsd'
 alias ll='eza -l'
 alias l.='ls -ld .[^.]*'
-alias tree='lsd --tree'
 alias bat='bat --theme=ansi' # https://github.com/sharkdp/bat
 alias cat='bat --paging=never --style=plain' # use bat in non-interactive mode and with no line numbers
 alias find='fd'
