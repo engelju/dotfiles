@@ -36,28 +36,28 @@ COMPLETION_WAITING_DOTS="true"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 plugins=(
-    #aliases
+    aliases
     autoenv
+    brew
     brew
     colored-man-pages
     colorize
     command-not-found
-    copypath
     copyfile
+    copypath
     cp
     extract
-    #git
+    git
     git-auto-fetch
-    mise
-    kubectl
     helm
+    kubectl
+    macos
+    mise
     operator-sdk
     screen
+    themes
     tmux
     vi-mode
-    brew
-    macos
-    themes
 )
 
 source $ZSH/oh-my-zsh.sh
