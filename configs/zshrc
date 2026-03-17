@@ -163,6 +163,7 @@ alias ijhttp='ijhttp -L VERBOSE'
 alias z='zellij'
 alias youtube-dl="yt-dlp"
 
+alias update="cd $HOME/Workspace/ && all-repos-clone"
 alias master="git checkout master && git pull"
 
 # alias tmp="cd $tmpDir && ls -al"
@@ -712,3 +713,6 @@ eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 # Starship
 eval "$(starship init zsh)"
+
+# all-repos
+eval "$(all-repos-complete -C ~/Workspace/all-repos.json --zsh)"
