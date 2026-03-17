@@ -72,11 +72,14 @@ keybind = global:cmd+;=toggle_visibility
 keybind = global:cmd+'=toggle_quick_terminal
 
 # Word navigation
-keybind = opt+backspace=text:\x17       # CTRL-W: delete word backwards
-# keybind = opt+arrow_left=text:\x1bb     # ALT-B:  move one word backwards
-# keybind = opt+arrow_right=text:\x1bf    # ALT-F:  move one word forward
-keybind = opt+arrow_right=text:\x1b[1;5C
+# CTRL-W: delete word backwards
+keybind = opt+backspace=text:\x17
+# ALT-B:  move one word backwards
+# keybind = opt+arrow_left=text:\x1bb
 keybind = opt+arrow_left=text:\x1b[1;5D
+# ALT-F:  move one word forward
+# keybind = opt+arrow_right=text:\x1bf
+keybind = opt+arrow_right=text:\x1b[1;5C
 
 # Line navigation
 keybind = cmd+arrow_left=csi:H
