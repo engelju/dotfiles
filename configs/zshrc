@@ -686,25 +686,29 @@ function setJiraTicket() {
 
 ## Integrations
 
-# iterm2
+# iTerm2
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# source some readline keybindings
+# Readline Keybindings
 [[ ! -f ~/.zsh_bindings ]] || source ~/.zsh_bindings
 
 # Powerlevel10k prompt. To change setup, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Additional ZSH setup
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Brewfile setup
 if [ -f $(brew --prefix)/etc/brew-wrap ];then
   source $(brew --prefix)/etc/brew-wrap
 fi
 
+# Kubebuilder
 eval $(kubebuilder completion zsh)
 
-# Mise integration
+# Mise 
 eval "$(/opt/homebrew/bin/mise activate zsh)"
 
+# Starship
 eval "$(starship init zsh)"
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
