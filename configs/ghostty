@@ -17,7 +17,7 @@
 # window-padding-x = 2
 # key =
 
-theme = light:Builtin Solarized Light,dark:Builtin Solarized Dark
+theme = light:iTerm2 Solarized Light,dark:iTerm2 Solarized Dark
 
 # fonts
 font-family = "SF Mono"
