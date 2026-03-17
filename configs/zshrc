@@ -180,10 +180,6 @@ alias openwith='dooti'
 
 ## Functions
 
-function json2yaml() {
-    yq -P eval -o yaml $1 > $2
-}
-
 # Most of these are taken from https://github.com/Adam13531/AdamsApple/shell/zsh
 
 function ensureInPath() {
@@ -312,6 +308,15 @@ function prefix () {
 function bu() {
     cp "$1" "$(basename "$1")"-"$(date +%Y%m%d)".backup ;
 }
+
+function json2yamlAllFiles() {
+    for file in */**/*.json; do yq -p json -o yaml "$file" > "${file%.json}.yaml"; done
+}
+
+function json2yaml() {
+    yq -P eval -o yaml $1 > $2
+}
+
 
 # -- Find Functions
 
