@@ -16,7 +16,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' frequency 30
 
+HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_TITLE="true"
+ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to change the command execution time
