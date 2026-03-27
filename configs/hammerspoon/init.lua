@@ -1,8 +1,8 @@
 -- Function to reload Hammerspoon configuration
-function reloadConfig()
-    hs.reload()
-    hs.alert.show("Config Reloaded", 3) -- Show the alert for 3 seconds
-    hs.notify.new({ title = "Hammerspoon", informativeText = "Config Reloaded" }):send()
+local function reloadConfig()
+	hs.reload()
+	hs.alert.show("Config Reloaded", 3) -- Show the alert for 3 seconds
+	hs.notify.new({ title = "Hammerspoon", informativeText = "Config Reloaded" }):send()
 end
 
 hs.hotkey.bind({ "ctrl", "cmd" }, "R", reloadConfig)
@@ -12,75 +12,74 @@ hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded!" }):sen
 
 -- *** Navigation Hotkeys *** ---
 
-hs.hotkey.bind({"cmd", "shift"}, "1",
-    function() hs.application.launchOrFocus("Ghostty")
+hs.hotkey.bind({ "cmd", "shift" }, "1", function()
+	hs.application.launchOrFocus("Ghostty")
 end)
 
-hs.hotkey.bind({"cmd", "shift"}, "2",
-    function() hs.application.launchOrFocus("Firefox")
+hs.hotkey.bind({ "cmd", "shift" }, "2", function()
+	hs.application.launchOrFocus("Firefox")
 end)
 
-hs.hotkey.bind({"cmd", "shift"}, "3",
-    function() hs.application.launchOrFocus("Microsoft Teams")
+hs.hotkey.bind({ "cmd", "shift" }, "3", function()
+	hs.application.launchOrFocus("Microsoft Teams")
 end)
 
-hs.hotkey.bind({"cmd", "shift"}, "4",
-    function() hs.application.launchOrFocus("Microsoft OneNote")
+hs.hotkey.bind({ "cmd", "shift" }, "4", function()
+	hs.application.launchOrFocus("Microsoft OneNote")
 end)
-
 
 -- *** Window Management *** ---
 
 -- Ensure padding variables are defined
-local padding = 10        -- Define your desired padding value
+local padding = 10 -- Define your desired padding value
 local padding_bottom = 10 -- Define your desired padding bottom value
 
 -- Function to maximize the current window with padding
-function maximizeWithPadding()
-    local win = hs.window.focusedWindow()
-    if win then
-        local screen = win:screen()
-        local screenFrame = screen:frame()
-        local newFrame = {
-            x = screenFrame.x + padding,
-            y = screenFrame.y + padding,
-            w = screenFrame.w - (2 * padding),
-            h = screenFrame.h - (2 * padding),
-        }
-        win:setFrame(newFrame)
-    end
+local function maximizeWithPadding()
+	local win = hs.window.focusedWindow()
+	if win then
+		local screen = win:screen()
+		local screenFrame = screen:frame()
+		local newFrame = {
+			x = screenFrame.x + padding,
+			y = screenFrame.y + padding,
+			w = screenFrame.w - (2 * padding),
+			h = screenFrame.h - (2 * padding),
+		}
+		win:setFrame(newFrame)
+	end
 end
 
 -- Function to move the active window to the left side of the screen with padding
-function moveWindowLeftWithPadding()
-    local win = hs.window.focusedWindow()
-    if win then
-        local screen = win:screen()
-        local screenFrame = screen:frame()
-        local newFrame = {
-            x = screenFrame.x + padding,
-            y = screenFrame.y + padding,
-            w = (screenFrame.w / 2) - padding,
-            h = screenFrame.h - (2 * padding),
-        }
-        win:setFrame(newFrame)
-    end
+local function moveWindowLeftWithPadding()
+	local win = hs.window.focusedWindow()
+	if win then
+		local screen = win:screen()
+		local screenFrame = screen:frame()
+		local newFrame = {
+			x = screenFrame.x + padding,
+			y = screenFrame.y + padding,
+			w = (screenFrame.w / 2) - padding,
+			h = screenFrame.h - (2 * padding),
+		}
+		win:setFrame(newFrame)
+	end
 end
 
 -- Function to move the active window to the right side of the screen with padding
-function moveWindowRightWithPadding()
-    local win = hs.window.focusedWindow()
-    if win then
-        local screen = win:screen()
-        local screenFrame = screen:frame()
-        local newFrame = {
-            x = screenFrame.x + (screenFrame.w / 2) + padding,
-            y = screenFrame.y + padding,
-            w = (screenFrame.w / 2) - (2 * padding),
-            h = screenFrame.h - (2 * padding),
-        }
-        win:setFrame(newFrame)
-    end
+local function moveWindowRightWithPadding()
+	local win = hs.window.focusedWindow()
+	if win then
+		local screen = win:screen()
+		local screenFrame = screen:frame()
+		local newFrame = {
+			x = screenFrame.x + (screenFrame.w / 2) + padding,
+			y = screenFrame.y + padding,
+			w = (screenFrame.w / 2) - (2 * padding),
+			h = screenFrame.h - (2 * padding),
+		}
+		win:setFrame(newFrame)
+	end
 end
 
 hs.hotkey.bind({ "ctrl", "cmd" }, "F", maximizeWithPadding)
@@ -95,55 +94,59 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "L", moveWindowRightWithPadding)
 -- Main center window and left and right windows
 local CENTER_RATIO = 0.5
 
-function moveWindowCenterWithPadding()
-    local win = hs.window.focusedWindow()
-    if win then
-        local screen = win:screen()
-        local screenFrame = screen:frame()
-        local targetWidth = (screenFrame.w * CENTER_RATIO)
-        local newFrame = {
-            x = screenFrame.x + (screenFrame.w - targetWidth) / 2,
-            y = screenFrame.y + padding,
-            w = targetWidth,
-            h = screenFrame.h - (2 * padding),
-        }
-        win:setFrame(newFrame)
-    end
+local function moveWindowCenterWithPadding()
+	local win = hs.window.focusedWindow()
+	if win then
+		local screen = win:screen()
+		local screenFrame = screen:frame()
+		local targetWidth = (screenFrame.w * CENTER_RATIO)
+		local newFrame = {
+			x = screenFrame.x + (screenFrame.w - targetWidth) / 2,
+			y = screenFrame.y + padding,
+			w = targetWidth,
+			h = screenFrame.h - (2 * padding),
+		}
+		win:setFrame(newFrame)
+	end
 end
 
-function moveWindowLeftOfCenterWithPadding()
-    local win = hs.window.focusedWindow()
-    if not win then return end
-    local s = win:screen():frame()
+local function moveWindowLeftOfCenterWithPadding()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local s = win:screen():frame()
 
-    local centerW = s.w * CENTER_RATIO
-    local centerX = s.x + (s.w - centerW) / 2  -- left edge of center window
+	local centerW = s.w * CENTER_RATIO
+	local centerX = s.x + (s.w - centerW) / 2 -- left edge of center window
 
-    local newFrame = {
-        x = s.x + padding,
-        y = s.y + padding,
-        w = (centerX - padding) - (s.x + padding), -- fill up to (center - padding)
-        h = s.h - (2 * padding),
-    }
-    win:setFrame(newFrame)
+	local newFrame = {
+		x = s.x + padding,
+		y = s.y + padding,
+		w = (centerX - padding) - (s.x + padding), -- fill up to (center - padding)
+		h = s.h - (2 * padding),
+	}
+	win:setFrame(newFrame)
 end
 
-function moveWindowRightOfCenterWithPadding()
-    local win = hs.window.focusedWindow()
-    if not win then return end
-    local s = win:screen():frame()
+local function moveWindowRightOfCenterWithPadding()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local s = win:screen():frame()
 
-    local centerW = s.w * CENTER_RATIO
-    local centerX = s.x + (s.w - centerW) / 2  -- left edge of center window
-    local leftEdge = centerX + centerW + padding
+	local centerW = s.w * CENTER_RATIO
+	local centerX = s.x + (s.w - centerW) / 2 -- left edge of center window
+	local leftEdge = centerX + centerW + padding
 
-    local newFrame = {
-        x = leftEdge,
-        y = s.y + padding,
-        w = (s.x + s.w - padding) - leftEdge, -- fill from (center+padding) to right edge-padding
-        h = s.h - (2 * padding),
-    }
-    win:setFrame(newFrame)
+	local newFrame = {
+		x = leftEdge,
+		y = s.y + padding,
+		w = (s.x + s.w - padding) - leftEdge, -- fill from (center+padding) to right edge-padding
+		h = s.h - (2 * padding),
+	}
+	win:setFrame(newFrame)
 end
 
 hs.hotkey.bind({ "ctrl", "cmd" }, "C", moveWindowCenterWithPadding)
@@ -153,48 +156,54 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "D", moveWindowRightOfCenterWithPadding)
 -- Third Splits Window Management
 -- Robust frame apply: move, resize, move (plus rounding)
 local function applyFrame(win, f)
-    f.x = math.floor(f.x + 0.5)
-    f.y = math.floor(f.y + 0.5)
-    f.w = math.floor(f.w + 0.5)
-    f.h = math.floor(f.h + 0.5)
-    win:setTopLeft({ x = f.x, y = f.y })
-    win:setSize({ w = f.w, h = f.h })
-    win:setTopLeft({ x = f.x, y = f.y })
+	f.x = math.floor(f.x + 0.5)
+	f.y = math.floor(f.y + 0.5)
+	f.w = math.floor(f.w + 0.5)
+	f.h = math.floor(f.h + 0.5)
+	win:setTopLeft({ x = f.x, y = f.y })
+	win:setSize({ w = f.w, h = f.h })
+	win:setTopLeft({ x = f.x, y = f.y })
 end
 
 -- Compute exact thirds with equal gutters:
 -- [padding][L][padding][M][padding][R][padding]
 local function thirdRect(s, index) -- index: 0=left, 1=middle, 2=right
-    local totalGutters = 4 * padding
-    local tw = (s.w - totalGutters) / 3
-    local x = s.x + padding + index * (tw + padding)
-    return {
-        x = x,
-        y = s.y + padding,
-        w = tw,
-        h = s.h - (padding + padding_bottom), -- top/bottom paddings
-    }
+	local totalGutters = 4 * padding
+	local tw = (s.w - totalGutters) / 3
+	local x = s.x + padding + index * (tw + padding)
+	return {
+		x = x,
+		y = s.y + padding,
+		w = tw,
+		h = s.h - (padding + padding_bottom), -- top/bottom paddings
+	}
 end
 
-function moveWindowLeftThirdWithPadding()
-    local win = hs.window.focusedWindow()
-    if not win then return end
-    local s = win:screen():frame()
-    applyFrame(win, thirdRect(s, 0))
+local function moveWindowLeftThirdWithPadding()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local s = win:screen():frame()
+	applyFrame(win, thirdRect(s, 0))
 end
 
-function moveWindowMiddleThirdWithPadding()
-    local win = hs.window.focusedWindow()
-    if not win then return end
-    local s = win:screen():frame()
-    applyFrame(win, thirdRect(s, 1))
+local function moveWindowMiddleThirdWithPadding()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local s = win:screen():frame()
+	applyFrame(win, thirdRect(s, 1))
 end
 
-function moveWindowRightThirdWithPadding()
-    local win = hs.window.focusedWindow()
-    if not win then return end
-    local s = win:screen():frame()
-    applyFrame(win, thirdRect(s, 2))
+local function moveWindowRightThirdWithPadding()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local s = win:screen():frame()
+	applyFrame(win, thirdRect(s, 2))
 end
 
 hs.hotkey.bind({ "ctrl", "cmd" }, "J", moveWindowLeftThirdWithPadding)
@@ -202,44 +211,44 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "V", moveWindowMiddleThirdWithPadding)
 hs.hotkey.bind({ "ctrl", "cmd" }, "K", moveWindowRightThirdWithPadding)
 
 -- move focused window to other screen
-hs.hotkey.bind({"ctrl", "cmd"}, "P", function()
-  local win = hs.window.focusedWindow()
-  win:moveToScreen(win:screen():next())
+hs.hotkey.bind({ "ctrl", "cmd" }, "P", function()
+	local win = hs.window.focusedWindow()
+	win:moveToScreen(win:screen():next())
 end)
 
 -- ** add arrow key movement to browsers
 
 -- Define apps considered browsers
 local browsers = {
-    ["Firefox"] = true,
-    ["Google Chrome"] = true,
-    ["Safari"] = true
+	["Firefox"] = true,
+	["Google Chrome"] = true,
+	["Safari"] = true,
 }
 
 -- Map keys to directions and scroll values
 local keyActions = {
-    h = {arrow = "left", scroll = {-20, 0}},
-    j = {arrow = "down", scroll = {0, -50}},
-    k = {arrow = "up", scroll = {0, 50}},
-    l = {arrow = "right", scroll = {20, 0}}
+	h = { arrow = "left", scroll = { -20, 0 } },
+	j = { arrow = "down", scroll = { 0, -50 } },
+	k = { arrow = "up", scroll = { 0, 50 } },
+	l = { arrow = "right", scroll = { 20, 0 } },
 }
 
 -- Modifier keys
-local mods = {"cmd", "shift"}
+local mods = { "cmd", "shift" }
 
 -- Bind keys
 for key, action in pairs(keyActions) do
-    hs.hotkey.bind(mods, key, function()
-        local app = hs.application.frontmostApplication()
-        local appName = app and app:name() or ""
-        if browsers[appName] then
-            -- Scroll instead of arrow key
-            hs.eventtap.scrollWheel(action.scroll, {}, "pixel")
-        else
-            -- Send arrow key
-            hs.eventtap.keyStroke({}, action.arrow)
-        end
-    end)
+	hs.hotkey.bind(mods, key, function()
+		local app = hs.application.frontmostApplication()
+		local appName = app and app:name() or ""
+		if browsers[appName] then
+			-- Scroll instead of arrow key
+			hs.eventtap.scrollWheel(action.scroll, {}, "pixel")
+		else
+			-- Send arrow key
+			hs.eventtap.keyStroke({}, action.arrow)
+		end
+	end)
 end
 
 -- === Display spotify song ===
