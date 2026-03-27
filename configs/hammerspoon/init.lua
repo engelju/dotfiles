@@ -10,6 +10,17 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "R", reloadConfig)
 -- Notify on reload
 hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded!" }):send()
 
+-- Watch for Dark/Light mode
+local appearanceWatcher = hs.distributednotifications.new(function()
+	if hs.host.interfaceStyle() == "Dark" then
+		print("Switched to Dark Mode")
+	else
+		print("Switched to Light Mode")
+	end
+end, "AppleInterfaceThemeChangedNotification")
+
+appearanceWatcher:start()
+
 -- *** Navigation Hotkeys *** ---
 
 hs.hotkey.bind({ "cmd", "shift" }, "1", function()
@@ -254,56 +265,61 @@ end
 -- === Display spotify song ===
 
 -- Function to get current Spotify track info
--- function getSpotifyTrack()
---     local script = [[
---         tell application "Spotify"
---             if it is running and player state is playing then
---                 set trackName to name of current track
---                 set artistName to artist of current track
---                 return artistName & " - " & trackName
---             else
---                 return "Not playing"
---             end if
---         end tell
---     ]]
---     local ok, result = hs.osascript.applescript(script)
---     return result
--- end
+local function getSpotifyTrack()
+	local script = [[
+        tell application "Spotify"
+            if it is running and player state is playing then
+                set trackName to name of current track
+                set artistName to artist of current track
+                return artistName & " - " & trackName
+            else
+                return "Not playing"
+            end if
+        end tell
+    ]]
+	local _, result = hs.osascript.applescript(script)
+	return result
+end
 
 -- Create a global variable for the text object
--- local spotifyTextDisplay = nil
+local spotifyTextDisplay = nil
+
+-- Function to get correct text color
+local function currentTextColor()
+	if hs.host.interfaceStyle() == "Dark" then
+		return { white = 1 } -- white text
+	else
+		return { white = 0 } -- black text
+	end
+end
 
 -- Function to show/update the text
--- function updateSpotifyText()
---     local trackInfo = getSpotifyTrack()
---
---     if not spotifyTextDisplay then
---         local screen = hs.screen.primaryScreen()
---         local screenFrame = screen:frame()  -- excludes dock & menu bar
---         local textX = screenFrame.x + 20
---         local textY = screenFrame.y + screenFrame.h + 25
---
---         spotifyTextDisplay = hs.drawing.text(
---             hs.geometry.rect(textX, textY, 600, 30),
---             trackInfo
---         )
---
---         spotifyTextDisplay:setTextFont("Helvetica Neue")
---         spotifyTextDisplay:setTextSize(16)
---         spotifyTextDisplay:setTextColor({white = 1})
---         spotifyTextDisplay:setBehaviorByLabels({"canJoinAllSpaces", "stationary"})
---         spotifyTextDisplay:setLevel(hs.drawing.windowLevels.status)
---         spotifyTextDisplay:show()
---     else
---         spotifyTextDisplay:setText(trackInfo)
---     end
--- end
+local function updateSpotifyText()
+	local trackInfo = getSpotifyTrack()
+
+	if not spotifyTextDisplay then
+		local screen = hs.screen.primaryScreen()
+		local screenFrame = screen:frame() -- excludes dock & menu bar
+		local textX = screenFrame.x + 20
+		local textY = screenFrame.y + screenFrame.h + 25
+
+		spotifyTextDisplay = hs.drawing.text(hs.geometry.rect(textX, textY, 600, 30), trackInfo)
+		spotifyTextDisplay:setTextFont("Helvetica Neue")
+		spotifyTextDisplay:setTextSize(16)
+		spotifyTextDisplay:setTextColor(currentTextColor())
+		spotifyTextDisplay:setBehaviorByLabels({ "canJoinAllSpaces", "stationary" })
+		spotifyTextDisplay:setLevel(hs.drawing.windowLevels.status)
+		spotifyTextDisplay:show()
+	else
+		spotifyTextDisplay:setText(trackInfo)
+	end
+end
 
 -- Timer to update the track info every few seconds
--- timerVar = hs.timer.doEvery(5, updateSpotifyText)
+timerVar = hs.timer.doEvery(5, updateSpotifyText)
 
 -- Initial update on startup
--- updateSpotifyText()
+updateSpotifyText()
 
 --- MOVE THE MOUSE WITH KEYBOARD
 
