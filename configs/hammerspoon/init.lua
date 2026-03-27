@@ -305,21 +305,6 @@ end
 -- Initial update on startup
 -- updateSpotifyText()
 
---- DROPDOWN TERMINAL
-
--- hs.hotkey.bind({ "ctrl", "shift" }, "a", function()
---     wez = hs.application.find("WezTerm", true)
---     if not wez then
---         hs.application.launchOrFocus("WezTerm")
---     else
---         if wez:isFrontmost() then
---             wez:hide()
---         else
---             wez:activate()
---         end
---     end
--- end)
-
 --- MOVE THE MOUSE WITH KEYBOARD
 
 local step = 21
